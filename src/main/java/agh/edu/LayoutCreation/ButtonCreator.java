@@ -3,6 +3,7 @@ package agh.edu.LayoutCreation;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ButtonCreator {
@@ -11,18 +12,24 @@ public class ButtonCreator {
 
     }
 
-    public ObservableList<Button> getButtons() {
-        // TODO: Check what must be done here
-        return new List<Button>(createAddButton(), createDayChangeButton(), createStatsButton(), createOptionsButton());
+    public List<Button> getButtons() {
+        ArrayList<Button> buttons = new ArrayList<>();
+        buttons.add(createDayChangeButton());
+        buttons.add(createAddButton());
+        buttons.add(createStatsButton());
+        buttons.add(createOptionsButton());
+
+        return buttons;
     }
+
     // TODO: Add all the logic
-    private Button createAddButton() {
-        Button addMeal = new Button("Add meal");
-        return addMeal;
-    }
     private Button createDayChangeButton() {
         Button changeDay = new Button("Change day");
         return changeDay;
+    }
+    private Button createAddButton() {
+        Button addMeal = new Button("Add meal");
+        return addMeal;
     }
     private Button createStatsButton() {
         Button showStats = new Button("Statistics");
