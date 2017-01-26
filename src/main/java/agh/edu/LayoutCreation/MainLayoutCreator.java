@@ -8,11 +8,11 @@ import javafx.stage.Screen;
 public class MainLayoutCreator {
     final Rectangle2D screenBound = Screen.getPrimary().getVisualBounds();
 
-    MainLayoutCreator() {
+    public MainLayoutCreator() {
 
     }
 
-    VBox createMenuBox() {
+    public VBox createMenuBox() {
         // TODO: Change this placeholder placing?
         VBox menu = new VBox(10);
         menu.setFillWidth(true);
@@ -26,19 +26,19 @@ public class MainLayoutCreator {
         return menu;
     }
 
-    Button createAddButton() {
+    private Button createAddButton() {
         Button addMeal = new Button("Add meal");
         return addMeal;
     }
-    Button createDayChangeButton() {
+    private Button createDayChangeButton() {
         Button changeDay = new Button("Change day");
         return changeDay;
     }
-    Button createStatsButton() {
+    private Button createStatsButton() {
         Button showStats = new Button("Statistics");
         return showStats;
     }
-    Button createOptionsButton() {
+    private Button createOptionsButton() {
         Button showOptions = new Button("Show options");
         return showOptions;
     }
