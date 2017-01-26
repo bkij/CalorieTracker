@@ -10,7 +10,7 @@ dependencies {
 
 task runApp(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'Main'
+    main = 'agh.edu.Main'
 }
 
 //TODO: Possibly add javafx plugin
