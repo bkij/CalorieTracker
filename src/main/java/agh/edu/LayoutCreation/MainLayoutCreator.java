@@ -26,6 +26,7 @@ public class MainLayoutCreator {
         return menu;
     }
 
+    // TODO: Add all the logic
     private Button createAddButton() {
         Button addMeal = new Button("Add meal");
         return addMeal;
