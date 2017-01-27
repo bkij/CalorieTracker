@@ -8,15 +8,17 @@ import javafx.stage.Screen;
 
 
 public class MainLayoutCreator {
-    private final Rectangle2D screenBound = Screen.getPrimary().getVisualBounds();
+    private int windowWidth;
+    private int windowHeight;
     private final VBox menu = new VBox();
     private final FlowPane mainWindow = new FlowPane();
 
-    public MainLayoutCreator() {
-
+    public MainLayoutCreator(int windowWidth, int windowHeight) {
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
     }
 
-    public void createMenuBox() {
+    private void createMenuBox() {
         // TODO: Change this placeholder placing?
         ButtonCreator buttonCreator = new ButtonCreator();
 
@@ -25,13 +27,17 @@ public class MainLayoutCreator {
         menu.getChildren().addAll(buttonCreator.getButtons());
     }
 
-    public void createMainWindow() {
+    private void createMainWindow() {
 
     }
 
     public BorderPane createMainLayout() {
         BorderPane mainLayout = new BorderPane();
+
+        createMenuBox();
         mainLayout.setLeft(menu);
+
+
         mainLayout.setCenter(mainWindow);
 
         return mainLayout;
