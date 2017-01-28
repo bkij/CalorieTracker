@@ -20,6 +20,7 @@ public class Main extends Application {
         MainLayoutCreator mainLayoutCreator = new MainLayoutCreator(initialWidth, initialHeight);
 
         Scene primaryScene = new Scene(mainLayoutCreator.createMainLayout(), initialWidth, initialHeight);
+        primaryScene.getStylesheets().add("stylesheets/style.css");
         stage.setScene(primaryScene);
         stage.setTitle("CalorieTracker");
         stage.show();

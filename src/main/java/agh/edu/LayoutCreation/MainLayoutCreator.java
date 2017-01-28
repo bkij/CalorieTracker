@@ -1,10 +1,8 @@
 package agh.edu.LayoutCreation;
 
-import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
 
 
 public class MainLayoutCreator {
