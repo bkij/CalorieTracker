@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ButtonCreator {
     List<Button> getButtons();
-    List<Text> getButtonText();
+    List<Text> getButtonsText();
 }

@@ -23,7 +23,7 @@ public class CircularButtonCreator implements ButtonCreator {
         return buttons;
     }
 
-    public List<Text> getButtonText() {
+    public List<Text> getButtonsText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text("Change day"));
         texts.add(new Text("Add meal"));

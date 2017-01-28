@@ -35,7 +35,7 @@ public class MainLayoutCreator {
         menu.setAlignment(Pos.TOP_CENTER);
 
         List<Button> buttons = buttonCreator.getButtons();
-        List<Text> texts = buttonCreator.getButtonText();
+        List<Text> texts = buttonCreator.getButtonsText();
         for(int i = 0; i < buttons.size(); i++) {
             menu.getChildren().addAll(buttons.get(i), texts.get(i));
         }
