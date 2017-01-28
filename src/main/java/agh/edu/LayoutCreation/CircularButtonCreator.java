@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CircularButtonCreator implements ButtonCreator {
-    public static final int BUTTON_DIAMETER = 150;
+    public static final int BUTTON_WIDTH = 150;
 
     public CircularButtonCreator() {
     }

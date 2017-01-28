@@ -26,7 +26,7 @@ public class MainLayoutCreator {
         ButtonCreator buttonCreator = new CircularButtonCreator();
 
         int vBoxWidth = windowWidth / 5;
-        int padding = (vBoxWidth - CircularButtonCreator.BUTTON_DIAMETER) / 2;
+        int padding = (vBoxWidth - CircularButtonCreator.BUTTON_WIDTH) / 2;
 
         menu.getStyleClass().add("VBox");
         menu.setPrefWidth(vBoxWidth);
