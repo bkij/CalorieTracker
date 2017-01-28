@@ -31,8 +31,13 @@ public class UserConfig implements Serializable {
      * Micronutrients
      * in micrograms
      */
-    private static Map<String, Double> micronutrients = new HashMap<>();
-    static {
+    private Map<String, Double> micronutrients = new HashMap<>();
+
+    public UserConfig() {
+        initializeMicronutrients();
+    }
+
+    private void initializeMicronutrients() {
         micronutrients.put("A", 900.0);
         micronutrients.put("C", 90_000.0);
         micronutrients.put("D", 15.0);
@@ -96,5 +101,8 @@ public class UserConfig implements Serializable {
         this.protein *= (BMR / initialBMR);
         this.carbs *= (BMR / initialBMR);
         this.fat *= (BMR / initialBMR);
+        for(Map.Entry<String, Double> entry : micronutrients.entrySet()) {
+            micronutrients.replace(entry.getKey(), entry.getValue() * (BMR / initialBMR));
+        }
     }
 }
