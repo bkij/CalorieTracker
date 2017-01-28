@@ -1,4 +1,4 @@
-package agh.edu.LayoutCreation;
+package agh.edu.layoutCreation;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

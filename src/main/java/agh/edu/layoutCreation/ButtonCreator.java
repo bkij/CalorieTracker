@@ -1,4 +1,4 @@
-package agh.edu.LayoutCreation;
+package agh.edu.layoutCreation;
 
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
