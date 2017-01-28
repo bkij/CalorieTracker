@@ -1,13 +1,19 @@
 package agh.edu.LayoutCreation;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
+import java.util.List;
 
 
 public class MainLayoutCreator {
-    private int windowWidth;
-    private int windowHeight;
+    private final int windowWidth;
+    private final int windowHeight;
     private final VBox menu = new VBox();
     private final FlowPane mainWindow = new FlowPane();
 
@@ -17,12 +23,24 @@ public class MainLayoutCreator {
     }
 
     private void createMenuBox() {
-        // TODO: Change this placeholder placing?
-        ButtonCreator buttonCreator = new ButtonCreator();
+        ButtonCreator buttonCreator = new CircularButtonCreator();
 
-        menu.setSpacing(10);
+        int vBoxWidth = windowWidth / 5;
+        int padding = (vBoxWidth - CircularButtonCreator.BUTTON_DIAMETER) / 2;
+
+        menu.getStyleClass().add("VBox");
+        menu.setPrefWidth(vBoxWidth);
+        menu.setSpacing(10);                // TODO: Think about dynamic spacing
         menu.setFillWidth(true);
-        menu.getChildren().addAll(buttonCreator.getButtons());
+        menu.setAlignment(Pos.TOP_CENTER);
+
+        List<Button> buttons = buttonCreator.getButtons();
+        List<Text> texts = buttonCreator.getButtonText();
+        for(int i = 0; i < buttons.size(); i++) {
+            menu.getChildren().addAll(buttons.get(i), texts.get(i));
+        }
+
+        menu.setPadding(new Insets(padding));
     }
 
     private void createMainWindow() {

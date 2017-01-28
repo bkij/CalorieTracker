@@ -43,3 +43,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-image: url("../images/stats.png");
 }
+.VBox
+{
+    -fx-background-color: #2f4550;
+}
