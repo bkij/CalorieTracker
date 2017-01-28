@@ -1,4 +1,6 @@
 package agh.edu.model;
 
-public class FoodInfo {
+import java.io.Serializable;
+
+public class FoodInfo implements Serializable {
 }

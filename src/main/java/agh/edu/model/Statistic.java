@@ -1,4 +1,6 @@
 package agh.edu.model;
 
-public class Statistic {
+import java.io.Serializable;
+
+public class Statistic implements Serializable {
 }
