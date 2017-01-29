@@ -44,7 +44,6 @@ public class UserConfig implements Serializable {
         micronutrients.put("K", 120.0);
         micronutrients.put("B6", 1300.0);
         micronutrients.put("E", 15_000.0);
-        micronutrients.put("B7", 30.0);
         micronutrients.put("Calcium", 1_000_000.0);
         micronutrients.put("Chloride", 2_300_000.0);
         micronutrients.put("Chromium", 35.0);
