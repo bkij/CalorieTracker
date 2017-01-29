@@ -19,6 +19,7 @@ public class FoodInfoAggregator implements FoodInfoPersistence {
     public FoodInfoAggregator(String fileDir, String fileName) {
         this.fileDir = fileDir;
         this.fileName = fileName;
+        this.foodData = new ArrayList<>();
     }
 
     @Override
