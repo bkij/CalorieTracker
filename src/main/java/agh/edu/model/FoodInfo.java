@@ -14,7 +14,5 @@ public class FoodInfo implements Serializable {
     private double B6;
     private double E;
     private double Calcium;
-    private double Chloride;
-    private double Chromium;
     private double Choline;
 }
