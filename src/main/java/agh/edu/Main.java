@@ -42,8 +42,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        //TODO: VBox for menu buttons
-        //TODO: Flow pane for main windows
         int initialWidth = 1024;
         int initialHeight = 768;
 
