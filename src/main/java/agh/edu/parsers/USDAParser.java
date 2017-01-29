@@ -6,7 +6,7 @@ import java.util.List;
 
 public class USDAParser implements NutritionalDataParser {
     @Override
-    public List<FoodInfo> parse(String filePath) {
+    public List<FoodInfo> parse(String filesPath) {
         return null;
     }
 }
