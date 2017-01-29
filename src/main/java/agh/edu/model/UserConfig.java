@@ -99,4 +99,8 @@ public class UserConfig implements Serializable {
             micronutrients.replace(entry.getKey(), entry.getValue() * (BMR / initialBMR));
         }
     }
+
+    public void setUserName(String newName) {
+        this.userName = newName;
+    }
 }
