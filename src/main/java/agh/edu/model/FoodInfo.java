@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class FoodInfo implements Serializable {
     String name;
 
+    private double kcal;
     private double protein;
     private double carbs;
     private double fat;
@@ -230,5 +231,21 @@ public class FoodInfo implements Serializable {
 
     public void setZinc(double zinc) {
         Zinc = zinc;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getKcal() {
+        return kcal;
+    }
+
+    public void setKcal(double kcal) {
+        this.kcal = kcal;
     }
 }
