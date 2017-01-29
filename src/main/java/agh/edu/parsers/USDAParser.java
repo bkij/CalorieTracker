@@ -55,7 +55,7 @@ public class USDAParser implements NutritionalDataParser {
         info.setProtein(nutInfo[2]);
         info.setFat(nutInfo[3]);
         info.setCarbs(nutInfo[5]);
-        info.setCarbs(nutInfo[8]);
+        info.setCalcium(nutInfo[8]);
         info.setIron(nutInfo[9]);
         info.setMagnesium(nutInfo[10]);
         info.setPhosphorus(nutInfo[11]);
