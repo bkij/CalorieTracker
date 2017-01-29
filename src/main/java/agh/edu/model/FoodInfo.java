@@ -3,6 +3,8 @@ package agh.edu.model;
 import java.io.Serializable;
 
 public class FoodInfo implements Serializable {
+    String name;
+
     private double protein;
     private double carbs;
     private double fat;
