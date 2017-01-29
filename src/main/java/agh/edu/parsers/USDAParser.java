@@ -9,9 +9,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class USDAParser implements NutritionalDataParser {
-    private final int numNutritionFields = 51;
+    private final int numNutritionFields = 46;
     @Override
     public List<FoodInfo> parse(String filesPath) {
         String fileName = "ABBREV.txt";
@@ -34,8 +35,8 @@ public class USDAParser implements NutritionalDataParser {
     private FoodInfo getInfoForCurrentLine(String currentLine) {
         FoodInfo currentFoodInfo = new FoodInfo();
 
-        String[] parts = currentLine.split("[^]");
-        double[] nutInfo = new double[parts.length - 2];
+        String[] parts = currentLine.split(Pattern.quote("^"));
+        double[] nutInfo = new double[parts.length - 7];
 
         for(int i = 0; i < nutInfo.length; i++) {
             nutInfo[i] = Double.parseDouble(parts[i + 2]);
