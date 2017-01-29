@@ -13,7 +13,7 @@ public class UserConfig implements Serializable {
      * Recommended Dietary Allowances, considered sufficient to
      * meet the requirements of 97.5% of population
      */
-    private String userName;
+    private String userName = "Bartosz";
 
     private final static double initialBMR = 2000.0;
     private double BMR = initialBMR;
