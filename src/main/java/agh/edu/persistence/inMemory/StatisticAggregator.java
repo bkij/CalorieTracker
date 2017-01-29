@@ -18,11 +18,8 @@ public class StatisticAggregator implements StatisticPersistence {
 
     @Override
     public void initializePersistence() {
-        try {
-            FileInputStream statsInputStream = new FileInputStream(fileDir + fileName);
-            ObjectInputStream statsReader = new ObjectInputStream(statsInputStream);
+        try (FileInputStream statsInputStream = new FileInputStream(fileDir + fileName); ObjectInputStream statsReader = new ObjectInputStream(statsInputStream)) {
             stats = (TreeSet<Statistic>)statsReader.readObject();
-            statsReader.close();
         } catch(IOException ex) {
             if(Utils.fileExsts(fileDir, fileName)) {
                 throw new PersistenceException("Statistic file exists but cannot be opened.");
@@ -34,11 +31,8 @@ public class StatisticAggregator implements StatisticPersistence {
 
     @Override
     public void finalizePersistence() {
-        try {
-            FileOutputStream statsOutputStream = new FileOutputStream(fileDir + fileName);
-            ObjectOutputStream statsWriter = new ObjectOutputStream(statsOutputStream);
+        try (FileOutputStream statsOutputStream = new FileOutputStream(fileDir + fileName); ObjectOutputStream statsWriter = new ObjectOutputStream(statsOutputStream)) {
             statsWriter.writeObject(stats);
-            statsWriter.close();
         } catch(IOException ex) {
             throw new PersistenceException("Cannot write to stats file");
         }

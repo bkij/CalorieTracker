@@ -19,11 +19,8 @@ public class UserConfigFilePersister implements UserConfigPersistence {
 
     @Override
     public void initializePersistence() {
-        try {
-            FileInputStream configStream = new FileInputStream(fileDir + fileName);
-            ObjectInputStream configReader = new ObjectInputStream(configStream);
+        try (FileInputStream configStream = new FileInputStream(fileDir + fileName); ObjectInputStream configReader = new ObjectInputStream(configStream)){
             currentUserConfig = (UserConfig)configReader.readObject();
-            configReader.close();
         } catch(IOException ex) {
             if(configExists()) {
                 throw new PersistenceException("Config file exists but can't be opened.");
@@ -35,11 +32,8 @@ public class UserConfigFilePersister implements UserConfigPersistence {
 
     @Override
     public void finalizePersistence() {
-        try {
-            FileOutputStream configOutputStream = new FileOutputStream(fileDir + fileName);
-            ObjectOutputStream configWriter = new ObjectOutputStream(configOutputStream);
+        try (FileOutputStream configOutputStream = new FileOutputStream(fileDir + fileName); ObjectOutputStream configWriter = new ObjectOutputStream(configOutputStream)){
             configWriter.writeObject(currentUserConfig);
-            configWriter.close();
         } catch(IOException ex) {
             throw new PersistenceException("Cannot write to config file");
         }

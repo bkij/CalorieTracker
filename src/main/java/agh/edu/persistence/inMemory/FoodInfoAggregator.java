@@ -18,11 +18,8 @@ public class FoodInfoAggregator implements FoodInfoPersistence {
 
     @Override
     public void initializePersistence() {
-        try {
-            FileInputStream foodInputStream = new FileInputStream(fileDir + fileName);
-            ObjectInputStream foodReader = new ObjectInputStream(foodInputStream);
+        try (FileInputStream foodInputStream = new FileInputStream(fileDir + fileName); ObjectInputStream foodReader = new ObjectInputStream(foodInputStream)){
             foodData = (ArrayList<FoodInfo>)foodReader.readObject();
-            foodReader.close();
         } catch(IOException ex) {
             if(Utils.fileExsts(fileDir, fileName)) {
                 throw new PersistenceException("Food file exists but cannot be opened");
@@ -34,9 +31,7 @@ public class FoodInfoAggregator implements FoodInfoPersistence {
 
     @Override
     public void finalizePersistence() {
-        try {
-            FileOutputStream foodOutputStream = new FileOutputStream(fileDir + fileName);
-            ObjectOutputStream foodWriter = new ObjectOutputStream(foodOutputStream);
+        try (FileOutputStream foodOutputStream = new FileOutputStream(fileDir + fileName); ObjectOutputStream foodWriter = new ObjectOutputStream(foodOutputStream)){
             foodWriter.writeObject(foodData);
             foodWriter.close();
         } catch(IOException ex) {
