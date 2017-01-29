@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class StatisticAggregator implements StatisticPersistence {
-    TreeSet<Statistic> stats;
+    private TreeSet<Statistic> stats;
     private final String fileDir = "./";
     private final String fileName = "stats.ctdb";
 
