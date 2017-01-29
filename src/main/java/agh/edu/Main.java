@@ -24,9 +24,10 @@ public class Main extends Application {
 
     @Override
     public void init() {
-        userConfigPersistence = new UserConfigFilePersister();
-        statisticPersistence = new StatisticAggregator();
-        foodInfoPersistence = new FoodInfoAggregator();
+        String persistenceDir = "./";
+        userConfigPersistence = new UserConfigFilePersister(persistenceDir, "user.cfg");
+        statisticPersistence = new StatisticAggregator(persistenceDir, "stats.ctdb");
+        foodInfoPersistence = new FoodInfoAggregator(persistenceDir, "food.ctdb");
 
         userConfigPersistence.initializePersistence();
         statisticPersistence.initializePersistence();
