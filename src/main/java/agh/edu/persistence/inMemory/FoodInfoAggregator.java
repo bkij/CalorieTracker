@@ -13,8 +13,13 @@ import java.util.stream.Collectors;
 
 public class FoodInfoAggregator implements FoodInfoPersistence {
     ArrayList<FoodInfo> foodData;
-    private final String fileDir = "./";
-    private final String fileName = "food.ctdb";
+    private final String fileDir;
+    private final String fileName;
+
+    public FoodInfoAggregator(String fileDir, String fileName) {
+        this.fileDir = fileDir;
+        this.fileName = fileName;
+    }
 
     @Override
     public void initializePersistence() {

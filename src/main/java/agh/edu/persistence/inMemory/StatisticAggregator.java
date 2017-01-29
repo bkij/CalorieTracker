@@ -13,8 +13,14 @@ import java.util.stream.Collectors;
 
 public class StatisticAggregator implements StatisticPersistence {
     private TreeSet<Statistic> stats;
-    private final String fileDir = "./";
-    private final String fileName = "stats.ctdb";
+    private final String fileDir;
+    private final String fileName;
+
+    public StatisticAggregator(String fileDir, String fileName) {
+        this.fileDir = fileDir;
+        this.fileName = fileName;
+        this.stats = new TreeSet<>();
+    }
 
     @Override
     public void initializePersistence() {

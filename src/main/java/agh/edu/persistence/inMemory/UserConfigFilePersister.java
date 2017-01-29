@@ -9,8 +9,13 @@ import java.io.*;
 
 public class UserConfigFilePersister implements UserConfigPersistence {
     private UserConfig currentUserConfig;
-    private final String fileDir = "./";
-    private final String fileName = "user.cfg";
+    private final String fileDir;
+    private final String fileName;
+
+    public UserConfigFilePersister(String fileDir, String fileName) {
+        this.fileDir = fileDir;
+        this.fileName = fileName;
+    }
 
     @Override
     public boolean configExists() {
