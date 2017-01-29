@@ -5,6 +5,11 @@ import agh.edu.persistence.UserConfigPersistence;
 
 public class UserConfigFilePersister implements UserConfigPersistence {
     @Override
+    public boolean configExists() {
+        return false;
+    }
+
+    @Override
     public void initializePersistence() {
 
     }
