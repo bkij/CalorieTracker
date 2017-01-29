@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Utils {
-    public static boolean fileExsts(String fileDir, String fileName) {
+    public static boolean fileExists(String fileDir, String fileName) {
         Path configFilePath = FileSystems.getDefault().getPath(fileDir, fileName);
         return Files.isReadable(configFilePath);
     }

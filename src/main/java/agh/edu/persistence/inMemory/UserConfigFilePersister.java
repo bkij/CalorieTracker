@@ -19,7 +19,7 @@ public class UserConfigFilePersister implements UserConfigPersistence {
 
     @Override
     public boolean configExists() {
-        return Utils.fileExsts(fileDir, fileName);
+        return Utils.fileExists(fileDir, fileName);
     }
 
     @Override

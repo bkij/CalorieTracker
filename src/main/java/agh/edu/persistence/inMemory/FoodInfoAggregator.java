@@ -27,7 +27,7 @@ public class FoodInfoAggregator implements FoodInfoPersistence {
         try (FileInputStream foodInputStream = new FileInputStream(fileDir + fileName); ObjectInputStream foodReader = new ObjectInputStream(foodInputStream)){
             foodData = (ArrayList<FoodInfo>)foodReader.readObject();
         } catch(IOException ex) {
-            if(Utils.fileExsts(fileDir, fileName)) {
+            if(Utils.fileExists(fileDir, fileName)) {
                 throw new PersistenceException("Food file exists but cannot be opened");
             }
         } catch(ClassCastException | ClassNotFoundException ex) {

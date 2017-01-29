@@ -27,7 +27,7 @@ public class StatisticAggregator implements StatisticPersistence {
         try (FileInputStream statsInputStream = new FileInputStream(fileDir + fileName); ObjectInputStream statsReader = new ObjectInputStream(statsInputStream)) {
             stats = (TreeSet<Statistic>)statsReader.readObject();
         } catch(IOException ex) {
-            if(Utils.fileExsts(fileDir, fileName)) {
+            if(Utils.fileExists(fileDir, fileName)) {
                 throw new PersistenceException("Statistic file exists but cannot be opened.");
             }
         } catch(ClassCastException | ClassNotFoundException ex) {
