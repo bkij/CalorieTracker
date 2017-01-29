@@ -3,11 +3,9 @@ package agh.edu.persistence.inMemory;
 import agh.edu.exceptions.PersistenceException;
 import agh.edu.model.UserConfig;
 import agh.edu.persistence.UserConfigPersistence;
+import agh.edu.util.Utils;
 
 import java.io.*;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class UserConfigFilePersister implements UserConfigPersistence {
     private UserConfig currentUserConfig;
@@ -16,8 +14,7 @@ public class UserConfigFilePersister implements UserConfigPersistence {
 
     @Override
     public boolean configExists() {
-        Path configFilePath = FileSystems.getDefault().getPath(fileDir, fileName);
-        return Files.isReadable(configFilePath);
+        return Utils.fileExsts(fileDir, fileName);
     }
 
     @Override
