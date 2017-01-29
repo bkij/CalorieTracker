@@ -15,8 +15,8 @@ public class UserConfig implements Serializable {
      */
     private String userName = "Bartosz";
 
-    private final static double initialBMR = 2000.0;
-    private double BMR = initialBMR;
+    private final double initialBMR = 2000.0;
+    private double BMR = 2000.0;
 
     /*
      * Macronutrients
@@ -31,7 +31,7 @@ public class UserConfig implements Serializable {
      * Micronutrients
      * in micrograms
      */
-    private Map<String, Double> micronutrients = new HashMap<>();
+    private HashMap<String, Double> micronutrients = new HashMap<>();
 
     public UserConfig() {
         initializeMicronutrients();

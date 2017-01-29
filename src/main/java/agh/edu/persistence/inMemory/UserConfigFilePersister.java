@@ -28,10 +28,10 @@ public class UserConfigFilePersister implements UserConfigPersistence {
             currentUserConfig = (UserConfig)configReader.readObject();
         } catch(IOException ex) {
             if(configExists()) {
-                throw new PersistenceException("Config file exists but can't be opened.");
+                throw new PersistenceException("Config file exists but can't be opened, " + ex.getMessage());
             }
         } catch(ClassNotFoundException | ClassCastException ex) {
-            throw new PersistenceException("Wrong config file format.");
+            throw new PersistenceException("Wrong config file format, " + ex.getMessage());
         }
     }
 
@@ -40,7 +40,7 @@ public class UserConfigFilePersister implements UserConfigPersistence {
         try (FileOutputStream configOutputStream = new FileOutputStream(fileDir + fileName); ObjectOutputStream configWriter = new ObjectOutputStream(configOutputStream)){
             configWriter.writeObject(currentUserConfig);
         } catch(IOException ex) {
-            throw new PersistenceException("Cannot write to config file");
+            throw new PersistenceException("Cannot write to config file, " + ex.getMessage());
         }
     }
 
