@@ -3,7 +3,7 @@ package agh.edu.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Statistic implements Serializable {
+public class Statistic implements Serializable, Comparable<Statistic> {
     private final LocalDate date;
     private double totalKcal;
     private double totalProt;
@@ -16,6 +16,15 @@ public class Statistic implements Serializable {
         totalProt = 0.0;
         totalCarbs = 0.0;
         totalFat = 0.0;
+    }
+
+    @Override
+    public int compareTo(Statistic statistic) {
+        return this.date.compareTo(statistic.getDate());
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     public double getTotalKcal() {

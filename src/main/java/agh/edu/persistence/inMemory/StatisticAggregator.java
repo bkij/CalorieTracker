@@ -4,11 +4,13 @@ import agh.edu.model.Statistic;
 import agh.edu.persistence.StatisticPersistence;
 
 import java.util.List;
+import java.util.TreeSet;
 import java.util.function.Predicate;
 
 public class StatisticAggregator implements StatisticPersistence {
+    TreeSet<Statistic> stats;
     @Override
-    public void intializePersistence() {
+    public void initializePersistence() {
 
     }
 

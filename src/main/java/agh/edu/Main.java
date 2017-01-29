@@ -29,7 +29,7 @@ public class Main extends Application {
         foodInfoPersistence = new FoodInfoAggregator();
 
         userConfigPersistence.initializePersistence();
-        statisticPersistence.intializePersistence();
+        statisticPersistence.initializePersistence();
         foodInfoPersistence.initializePersistence();
 
         if(!userConfigPersistence.configExists()) {
