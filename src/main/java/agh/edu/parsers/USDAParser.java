@@ -13,12 +13,19 @@ import java.util.regex.Pattern;
 
 public class USDAParser implements NutritionalDataParser {
     private final int numNutritionFields = 46;
+    private final String filesDir;
+    private final String fileName;
+
+    public USDAParser(String filesDir, String fileName) {
+        this.filesDir = filesDir;
+        this.fileName = fileName;
+    }
+
     @Override
-    public List<FoodInfo> parse(String filesPath) {
-        String fileName = "ABBREV.txt";
+    public List<FoodInfo> parse() {
         List<FoodInfo> foodData = new LinkedList<>();
 
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filesPath + fileName);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filesDir + fileName);
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String currentLine = reader.readLine();
             FoodInfo currentFoodInfo = getInfoForCurrentLine(currentLine);

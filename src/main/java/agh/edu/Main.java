@@ -63,8 +63,8 @@ public class Main extends Application {
     }
 
     private void createFoodDatabase(FoodInfoPersistence foodInfoPersistence) {
-        NutritionalDataParser parser = new USDAParser();
-        List<FoodInfo> foodData = parser.parse("foodData/");
+        NutritionalDataParser parser = new USDAParser("foodData/", "ABBREV.txt");
+        List<FoodInfo> foodData = parser.parse();
         for(FoodInfo info : foodData) {
             foodInfoPersistence.save(info);
         }
