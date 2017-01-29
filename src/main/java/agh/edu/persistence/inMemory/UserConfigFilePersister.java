@@ -1,31 +1,60 @@
 package agh.edu.persistence.inMemory;
 
+import agh.edu.exceptions.PersistenceException;
 import agh.edu.model.UserConfig;
 import agh.edu.persistence.UserConfigPersistence;
 
+import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class UserConfigFilePersister implements UserConfigPersistence {
+    private UserConfig currentUserConfig;
+    private final String fileDir = "./";
+    private final String fileName = "user.cfg";
+
     @Override
     public boolean configExists() {
-        return false;
+        Path configFilePath = FileSystems.getDefault().getPath(fileDir, fileName);
+        return Files.isReadable(configFilePath);
     }
 
     @Override
     public void initializePersistence() {
-
+        try {
+            FileInputStream configStream = new FileInputStream(fileDir + fileName);
+            ObjectInputStream configReader = new ObjectInputStream(configStream);
+            currentUserConfig = (UserConfig)configReader.readObject();
+            configReader.close();
+        } catch(IOException ex) {
+            if(configExists()) {
+                throw new PersistenceException("Config file exists but can't be opened.");
+            }
+        } catch(ClassNotFoundException | ClassCastException ex) {
+            throw new PersistenceException("Wrong config file format.");
+        }
     }
 
     @Override
     public void finalizePersistence() {
-
+        try {
+            FileOutputStream configOutputStream = new FileOutputStream(fileDir + fileName);
+            ObjectOutputStream configWriter = new ObjectOutputStream(configOutputStream);
+            configWriter.writeObject(currentUserConfig);
+            configWriter.close();
+        } catch(IOException ex) {
+            throw new PersistenceException("Cannot write to config file");
+        }
     }
 
     @Override
     public void save(UserConfig userConfig) {
-
+        currentUserConfig = userConfig;
     }
 
     @Override
     public UserConfig get() {
-        return null;
+        return currentUserConfig;
     }
 }
