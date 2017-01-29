@@ -19,6 +19,7 @@ public class UserConfigFilePersisterTest {
     @Test
     public void testNoExceptionsOnNoFilePresent() {
         userConfigFilePersister = new UserConfigFilePersister("testPersistenceData/", "random");
+        userConfigFilePersister.initializePersistence();
     }
 
     @Test
