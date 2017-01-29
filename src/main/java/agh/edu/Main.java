@@ -55,6 +55,13 @@ public class Main extends Application {
         stage.show();
     }
 
+    @Override
+    public void stop() {
+        userConfigPersistence.finalizePersistence();
+        statisticPersistence.finalizePersistence();
+        foodInfoPersistence.finalizePersistence();
+    }
+
     private void createFoodDatabase(FoodInfoPersistence foodInfoPersistence) {
         NutritionalDataParser parser = new USDAParser();
         List<FoodInfo> foodData = parser.parse("foodData/");
