@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-//TODO: Add more tests
 public class UserConfigFilePersisterTest {
     private UserConfigFilePersister userConfigFilePersister;
     private final String testDir = "src/main/resources/testPersistenceData/";
@@ -32,12 +31,13 @@ public class UserConfigFilePersisterTest {
 
     @Test
     public void testWritesToFile() {
-        try {
-            Files.deleteIfExists(Paths.get(testDir + testName));
-        } catch(IOException e) {}
+
         userConfigFilePersister = new UserConfigFilePersister(testDir, testName);
         userConfigFilePersister.save(new UserConfig());
         userConfigFilePersister.finalizePersistence();
         assertTrue(Utils.fileExists(testDir, testName));
+        try {
+            Files.deleteIfExists(Paths.get(testDir + testName));
+        } catch(IOException e) {}
     }
 }
