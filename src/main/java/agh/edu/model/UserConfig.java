@@ -49,7 +49,6 @@ public class UserConfig implements Serializable {
         micronutrients.put("Copper", 900.0);
         micronutrients.put("B12", 2.4);
         micronutrients.put("B9", 400.0);
-        micronutrients.put("Iodine", 150.0);
         micronutrients.put("Iron", 8000.0);
         micronutrients.put("Magnesium", 420_000.0);
         micronutrients.put("Manganese", 2300.0);
