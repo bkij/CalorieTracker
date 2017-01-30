@@ -3,7 +3,7 @@ package agh.edu.storage.inMemory;
 import org.junit.Test;
 
 //TODO: Add more tests
-public class StatisticAggregatorTest {
+public class StatisticFileStorageTest {
     private StatisticFileStorage statisticFileStorage;
     @Test
     public void noExceptionsOnNoFilePresent() {

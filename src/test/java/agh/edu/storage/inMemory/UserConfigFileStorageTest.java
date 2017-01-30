@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class UserConfigFilePersisterTest {
+public class UserConfigFileStorageTest {
     private UserConfigFileStorage userConfigFileStorage;
     private final String testDir = "src/main/resources/testPersistenceData/";
     private final String testName = "testConfig.cfg";

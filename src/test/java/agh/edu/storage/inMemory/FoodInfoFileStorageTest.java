@@ -3,7 +3,7 @@ package agh.edu.storage.inMemory;
 import org.junit.Test;
 
 //TODO: Add more tests
-public class FoodInfoAggregatorTest {
+public class FoodInfoFileStorageTest {
     private FoodInfoFileStorage foodInfoFileStorage;
 
     @Test
