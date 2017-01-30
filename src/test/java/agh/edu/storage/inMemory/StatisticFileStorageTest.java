@@ -1,9 +1,13 @@
 package agh.edu.storage.inMemory;
 
 import agh.edu.model.Statistic;
+import agh.edu.util.Utils;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Set;
 import java.util.SortedSet;
 
@@ -40,5 +44,18 @@ public class StatisticFileStorageTest {
         assertNotNull(oneStat);
         assertEquals(1, oneStat.size());
         assertTrue(exampleStat.equals(oneStat.first()));
+    }
+
+    @Test
+    public void testWritesToFile() {
+        Statistic exampleStat = new Statistic();
+        statisticFileStorage.save(exampleStat);
+        statisticFileStorage.finalizeStorage();
+        assertTrue(Utils.fileExists(testDir, testName));
+        try {
+            Files.deleteIfExists(Paths.get(testDir + testName));
+        } catch(IOException e) {
+            throw new RuntimeException("Something's wrong with the test code - can't delete file");
+        }
     }
 }
