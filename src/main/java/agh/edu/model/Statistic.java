@@ -23,6 +23,21 @@ public class Statistic implements Serializable, Comparable<Statistic> {
         return this.date.compareTo(statistic.getDate());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Statistic statistic = (Statistic) o;
+
+        return date.equals(statistic.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return date.hashCode();
+    }
+
     public LocalDate getDate() {
         return date;
     }
