@@ -39,6 +39,8 @@ public class UserConfigFilePersisterTest {
         assertTrue(Utils.fileExists(testDir, testName));
         try {
             Files.deleteIfExists(Paths.get(testDir + testName));
-        } catch(IOException e) {}
+        } catch(IOException e) {
+            throw new RuntimeException("Something's wrong with the test code - can't delete file");
+        }
     }
 }
