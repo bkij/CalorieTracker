@@ -29,9 +29,9 @@ public class Main extends Application {
         statisticsStorage = new StatisticFileStorage(persistenceDir, "stats.ctdb");
         foodInfoStorage = new FoodInfoFileStorage(persistenceDir, "food.ctdb");
 
-        userConfigStorage.initializePersistence();
-        statisticsStorage.initializePersistence();
-        foodInfoStorage.initializePersistence();
+        userConfigStorage.initializeStorage();
+        statisticsStorage.initializeStorage();
+        foodInfoStorage.initializeStorage();
 
         if(!userConfigStorage.configExists()) {
             // First application run
@@ -56,9 +56,9 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        userConfigStorage.finalizePersistence();
-        statisticsStorage.finalizePersistence();
-        foodInfoStorage.finalizePersistence();
+        userConfigStorage.finalizeStorage();
+        statisticsStorage.finalizeStorage();
+        foodInfoStorage.finalizeStorage();
     }
 
     private void createFoodDatabase(FoodInfoStorage foodInfoStorage) {

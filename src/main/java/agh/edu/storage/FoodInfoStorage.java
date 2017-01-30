@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public interface FoodInfoStorage {
-    void initializePersistence();
-    void finalizePersistence();
+    void initializeStorage();
+    void finalizeStorage();
     void save(FoodInfo info);
     List<FoodInfo> getByPredicate(Predicate<FoodInfo> predicate);
 }

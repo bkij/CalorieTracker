@@ -4,8 +4,8 @@ import agh.edu.model.UserConfig;
 
 public interface UserConfigStorage {
     boolean configExists();
-    void initializePersistence();
-    void finalizePersistence();
+    void initializeStorage();
+    void finalizeStorage();
     void save(UserConfig userConfig);
     UserConfig get();
 }

@@ -23,7 +23,7 @@ public class FoodInfoFileStorage implements FoodInfoStorage {
     }
 
     @Override
-    public void initializePersistence() {
+    public void initializeStorage() {
         try (FileInputStream foodInputStream = new FileInputStream(fileDir + fileName); ObjectInputStream foodReader = new ObjectInputStream(foodInputStream)){
             foodData = (ArrayList<FoodInfo>)foodReader.readObject();
         } catch(IOException ex) {
@@ -36,7 +36,7 @@ public class FoodInfoFileStorage implements FoodInfoStorage {
     }
 
     @Override
-    public void finalizePersistence() {
+    public void finalizeStorage() {
         try (FileOutputStream foodOutputStream = new FileOutputStream(fileDir + fileName); ObjectOutputStream foodWriter = new ObjectOutputStream(foodOutputStream)){
             foodWriter.writeObject(foodData);
             foodWriter.close();

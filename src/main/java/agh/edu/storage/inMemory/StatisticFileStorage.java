@@ -23,7 +23,7 @@ public class StatisticFileStorage implements StatisticsStorage {
     }
 
     @Override
-    public void initializePersistence() {
+    public void initializeStorage() {
         try (FileInputStream statsInputStream = new FileInputStream(fileDir + fileName); ObjectInputStream statsReader = new ObjectInputStream(statsInputStream)) {
             stats = (TreeSet<Statistic>)statsReader.readObject();
         } catch(IOException ex) {
@@ -36,7 +36,7 @@ public class StatisticFileStorage implements StatisticsStorage {
     }
 
     @Override
-    public void finalizePersistence() {
+    public void finalizeStorage() {
         try (FileOutputStream statsOutputStream = new FileOutputStream(fileDir + fileName); ObjectOutputStream statsWriter = new ObjectOutputStream(statsOutputStream)) {
             statsWriter.writeObject(stats);
         } catch(IOException ex) {

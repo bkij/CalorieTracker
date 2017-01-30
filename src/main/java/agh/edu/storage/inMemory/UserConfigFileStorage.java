@@ -23,7 +23,7 @@ public class UserConfigFileStorage implements UserConfigStorage {
     }
 
     @Override
-    public void initializePersistence() {
+    public void initializeStorage() {
         try (FileInputStream configStream = new FileInputStream(fileDir + fileName); ObjectInputStream configReader = new ObjectInputStream(configStream)){
             currentUserConfig = (UserConfig)configReader.readObject();
         } catch(IOException ex) {
@@ -36,7 +36,7 @@ public class UserConfigFileStorage implements UserConfigStorage {
     }
 
     @Override
-    public void finalizePersistence() {
+    public void finalizeStorage() {
         try (FileOutputStream configOutputStream = new FileOutputStream(fileDir + fileName); ObjectOutputStream configWriter = new ObjectOutputStream(configOutputStream)){
             configWriter.writeObject(currentUserConfig);
         } catch(IOException ex) {

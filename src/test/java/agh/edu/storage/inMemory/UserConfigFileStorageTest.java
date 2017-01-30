@@ -19,7 +19,7 @@ public class UserConfigFileStorageTest {
     @Test
     public void testNoExceptionsOnNoFilePresent() {
         userConfigFileStorage = new UserConfigFileStorage("testPersistenceData/", "random");
-        userConfigFileStorage.initializePersistence();
+        userConfigFileStorage.initializeStorage();
     }
 
     @Test
@@ -35,7 +35,7 @@ public class UserConfigFileStorageTest {
 
         userConfigFileStorage = new UserConfigFileStorage(testDir, testName);
         userConfigFileStorage.save(new UserConfig());
-        userConfigFileStorage.finalizePersistence();
+        userConfigFileStorage.finalizeStorage();
         assertTrue(Utils.fileExists(testDir, testName));
         try {
             Files.deleteIfExists(Paths.get(testDir + testName));
