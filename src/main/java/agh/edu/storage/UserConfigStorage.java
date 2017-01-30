@@ -1,8 +1,8 @@
-package agh.edu.persistence;
+package agh.edu.storage;
 
 import agh.edu.model.UserConfig;
 
-public interface UserConfigPersistence {
+public interface UserConfigStorage {
     boolean configExists();
     void initializePersistence();
     void finalizePersistence();

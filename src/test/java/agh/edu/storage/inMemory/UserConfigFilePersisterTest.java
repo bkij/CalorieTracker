@@ -1,4 +1,4 @@
-package agh.edu.persistence.inMemory;
+package agh.edu.storage.inMemory;
 
 import agh.edu.model.UserConfig;
 import agh.edu.util.Utils;
@@ -12,30 +12,30 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UserConfigFilePersisterTest {
-    private UserConfigFilePersister userConfigFilePersister;
+    private UserConfigFileStorage userConfigFileStorage;
     private final String testDir = "src/main/resources/testPersistenceData/";
     private final String testName = "testConfig.cfg";
 
     @Test
     public void testNoExceptionsOnNoFilePresent() {
-        userConfigFilePersister = new UserConfigFilePersister("testPersistenceData/", "random");
-        userConfigFilePersister.initializePersistence();
+        userConfigFileStorage = new UserConfigFileStorage("testPersistenceData/", "random");
+        userConfigFileStorage.initializePersistence();
     }
 
     @Test
     public void testGetReturnsSaved() {
-        userConfigFilePersister = new UserConfigFilePersister("a", "b");
+        userConfigFileStorage = new UserConfigFileStorage("a", "b");
         UserConfig userConfig = new UserConfig();
-        userConfigFilePersister.save(userConfig);
-        assertEquals(userConfig, userConfigFilePersister.get());
+        userConfigFileStorage.save(userConfig);
+        assertEquals(userConfig, userConfigFileStorage.get());
     }
 
     @Test
     public void testWritesToFile() {
 
-        userConfigFilePersister = new UserConfigFilePersister(testDir, testName);
-        userConfigFilePersister.save(new UserConfig());
-        userConfigFilePersister.finalizePersistence();
+        userConfigFileStorage = new UserConfigFileStorage(testDir, testName);
+        userConfigFileStorage.save(new UserConfig());
+        userConfigFileStorage.finalizePersistence();
         assertTrue(Utils.fileExists(testDir, testName));
         try {
             Files.deleteIfExists(Paths.get(testDir + testName));

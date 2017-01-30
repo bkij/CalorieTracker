@@ -5,12 +5,12 @@ import agh.edu.model.FoodInfo;
 import agh.edu.model.UserConfig;
 import agh.edu.parsers.NutritionalDataParser;
 import agh.edu.parsers.USDAParser;
-import agh.edu.persistence.FoodInfoPersistence;
-import agh.edu.persistence.StatisticPersistence;
-import agh.edu.persistence.UserConfigPersistence;
-import agh.edu.persistence.inMemory.FoodInfoAggregator;
-import agh.edu.persistence.inMemory.StatisticAggregator;
-import agh.edu.persistence.inMemory.UserConfigFilePersister;
+import agh.edu.storage.FoodInfoStorage;
+import agh.edu.storage.StatisticsStorage;
+import agh.edu.storage.UserConfigStorage;
+import agh.edu.storage.inMemory.FoodInfoFileStorage;
+import agh.edu.storage.inMemory.StatisticFileStorage;
+import agh.edu.storage.inMemory.UserConfigFileStorage;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,25 +18,25 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class Main extends Application {
-    private UserConfigPersistence userConfigPersistence;
-    private StatisticPersistence statisticPersistence;
-    private FoodInfoPersistence foodInfoPersistence;
+    private UserConfigStorage userConfigStorage;
+    private StatisticsStorage statisticsStorage;
+    private FoodInfoStorage foodInfoStorage;
 
     @Override
     public void init() {
         String persistenceDir = "./";
-        userConfigPersistence = new UserConfigFilePersister(persistenceDir, "user.cfg");
-        statisticPersistence = new StatisticAggregator(persistenceDir, "stats.ctdb");
-        foodInfoPersistence = new FoodInfoAggregator(persistenceDir, "food.ctdb");
+        userConfigStorage = new UserConfigFileStorage(persistenceDir, "user.cfg");
+        statisticsStorage = new StatisticFileStorage(persistenceDir, "stats.ctdb");
+        foodInfoStorage = new FoodInfoFileStorage(persistenceDir, "food.ctdb");
 
-        userConfigPersistence.initializePersistence();
-        statisticPersistence.initializePersistence();
-        foodInfoPersistence.initializePersistence();
+        userConfigStorage.initializePersistence();
+        statisticsStorage.initializePersistence();
+        foodInfoStorage.initializePersistence();
 
-        if(!userConfigPersistence.configExists()) {
+        if(!userConfigStorage.configExists()) {
             // First application run
-            createFoodDatabase(foodInfoPersistence);
-            createDefaultConfig(userConfigPersistence);
+            createFoodDatabase(foodInfoStorage);
+            createDefaultConfig(userConfigStorage);
         }
     }
 
@@ -56,20 +56,20 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        userConfigPersistence.finalizePersistence();
-        statisticPersistence.finalizePersistence();
-        foodInfoPersistence.finalizePersistence();
+        userConfigStorage.finalizePersistence();
+        statisticsStorage.finalizePersistence();
+        foodInfoStorage.finalizePersistence();
     }
 
-    private void createFoodDatabase(FoodInfoPersistence foodInfoPersistence) {
+    private void createFoodDatabase(FoodInfoStorage foodInfoStorage) {
         NutritionalDataParser parser = new USDAParser("foodData/", "ABBREV.txt");
         List<FoodInfo> foodData = parser.parse();
         for(FoodInfo info : foodData) {
-            foodInfoPersistence.save(info);
+            foodInfoStorage.save(info);
         }
     }
 
-    private void createDefaultConfig(UserConfigPersistence userConfigPersistence) {
-        userConfigPersistence.save(new UserConfig());
+    private void createDefaultConfig(UserConfigStorage userConfigStorage) {
+        userConfigStorage.save(new UserConfig());
     }
 }

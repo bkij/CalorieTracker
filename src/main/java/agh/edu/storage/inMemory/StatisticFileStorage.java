@@ -1,8 +1,8 @@
-package agh.edu.persistence.inMemory;
+package agh.edu.storage.inMemory;
 
 import agh.edu.exceptions.PersistenceException;
 import agh.edu.model.Statistic;
-import agh.edu.persistence.StatisticPersistence;
+import agh.edu.storage.StatisticsStorage;
 import agh.edu.util.Utils;
 
 import java.io.*;
@@ -11,12 +11,12 @@ import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class StatisticAggregator implements StatisticPersistence {
+public class StatisticFileStorage implements StatisticsStorage {
     private TreeSet<Statistic> stats;
     private final String fileDir;
     private final String fileName;
 
-    public StatisticAggregator(String fileDir, String fileName) {
+    public StatisticFileStorage(String fileDir, String fileName) {
         this.fileDir = fileDir;
         this.fileName = fileName;
         this.stats = new TreeSet<>();

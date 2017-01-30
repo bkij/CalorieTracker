@@ -1,18 +1,18 @@
-package agh.edu.persistence.inMemory;
+package agh.edu.storage.inMemory;
 
 import agh.edu.exceptions.PersistenceException;
 import agh.edu.model.UserConfig;
-import agh.edu.persistence.UserConfigPersistence;
+import agh.edu.storage.UserConfigStorage;
 import agh.edu.util.Utils;
 
 import java.io.*;
 
-public class UserConfigFilePersister implements UserConfigPersistence {
+public class UserConfigFileStorage implements UserConfigStorage {
     private UserConfig currentUserConfig;
     private final String fileDir;
     private final String fileName;
 
-    public UserConfigFilePersister(String fileDir, String fileName) {
+    public UserConfigFileStorage(String fileDir, String fileName) {
         this.fileDir = fileDir;
         this.fileName = fileName;
     }

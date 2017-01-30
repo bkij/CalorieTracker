@@ -1,8 +1,8 @@
-package agh.edu.persistence.inMemory;
+package agh.edu.storage.inMemory;
 
 import agh.edu.exceptions.PersistenceException;
 import agh.edu.model.FoodInfo;
-import agh.edu.persistence.FoodInfoPersistence;
+import agh.edu.storage.FoodInfoStorage;
 import agh.edu.util.Utils;
 
 import java.io.*;
@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class FoodInfoAggregator implements FoodInfoPersistence {
+public class FoodInfoFileStorage implements FoodInfoStorage {
     ArrayList<FoodInfo> foodData;
     private final String fileDir;
     private final String fileName;
 
-    public FoodInfoAggregator(String fileDir, String fileName) {
+    public FoodInfoFileStorage(String fileDir, String fileName) {
         this.fileDir = fileDir;
         this.fileName = fileName;
         this.foodData = new ArrayList<>();
