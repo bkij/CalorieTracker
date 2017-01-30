@@ -1,5 +1,6 @@
 package agh.edu.layoutCreation;
 
+import agh.edu.model.UserConfig;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -14,12 +15,15 @@ import java.util.List;
 public class MainLayoutCreator {
     private final int windowWidth;
     private final int windowHeight;
+    private UserConfig userConfig;
+
     private final VBox menu = new VBox();
     private final FlowPane mainWindow = new FlowPane();
 
-    public MainLayoutCreator(int windowWidth, int windowHeight) {
+    public MainLayoutCreator(UserConfig userConfig, int windowWidth, int windowHeight) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
+        this.userConfig = userConfig;
     }
 
     private void createMenuBox() {
@@ -44,17 +48,21 @@ public class MainLayoutCreator {
     }
 
     private void createMainWindow() {
+        TextCreator textCreator = new TextCreator(userConfig, windowHeight);
 
+        mainWindow.getChildren().add(textCreator.getGreetingText());
+        mainWindow.setPadding(new Insets(30, 30, 20, 40)); // TODO: Think about dynamic
     }
 
     public BorderPane createMainLayout() {
         BorderPane mainLayout = new BorderPane();
 
         createMenuBox();
+        createMainWindow();
         mainLayout.setLeft(menu);
-
-
         mainLayout.setCenter(mainWindow);
+
+        mainLayout.getStyleClass().add("mainLayout");
 
         return mainLayout;
     }

@@ -45,7 +45,8 @@ public class Main extends Application {
         int initialWidth = 1024;
         int initialHeight = 768;
 
-        MainLayoutCreator mainLayoutCreator = new MainLayoutCreator(initialWidth, initialHeight);
+        UserConfig currentUserConfig = userConfigStorage.get();
+        MainLayoutCreator mainLayoutCreator = new MainLayoutCreator(currentUserConfig, initialWidth, initialHeight);
 
         Scene primaryScene = new Scene(mainLayoutCreator.createMainLayout(), initialWidth, initialHeight);
         primaryScene.getStylesheets().add("stylesheets/style.css");

@@ -47,3 +47,22 @@
 {
     -fx-background-color: #2f4550;
 }
+
+.greetingText
+{
+    -fx-font-size: 50pt;
+    -fx-fill: black;
+    -fx-font-weight: 600;
+}
+
+.followupText
+{
+    -fx-font-size: 16pt;
+    -fx-fill: #575b62;
+    -fx-font-style: italic;
+}
+
+.mainLayout
+{
+    -fx-background-color: #f4f4f9;
+}
