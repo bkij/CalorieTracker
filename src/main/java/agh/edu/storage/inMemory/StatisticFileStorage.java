@@ -6,7 +6,7 @@ import agh.edu.storage.StatisticsStorage;
 import agh.edu.util.Utils;
 
 import java.io.*;
-import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -50,7 +50,7 @@ public class StatisticFileStorage implements StatisticsStorage {
     }
 
     @Override
-    public Set<Statistic> getByPredicate(Predicate<Statistic> predicate) {
-        return stats.stream().filter(predicate).collect(Collectors.toSet());
+    public SortedSet<Statistic> getByPredicate(Predicate<Statistic> predicate) {
+        return new TreeSet<>(stats.stream().filter(predicate).collect(Collectors.toSet()));
     }
 }

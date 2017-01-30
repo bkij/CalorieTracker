@@ -5,9 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Set;
+import java.util.SortedSet;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 //TODO: Add more tests
 public class StatisticFileStorageTest {
@@ -34,10 +34,11 @@ public class StatisticFileStorageTest {
 
     @Test
     public void testGetByPredicate() {
-        statisticFileStorage.save(new Statistic());
-        Set<Statistic> oneStat = statisticFileStorage.getByPredicate(stat -> true);
+        Statistic exampleStat = new Statistic();
+        statisticFileStorage.save(exampleStat);
+        SortedSet<Statistic> oneStat = statisticFileStorage.getByPredicate(stat -> true);
         assertNotNull(oneStat);
         assertEquals(1, oneStat.size());
-
+        assertTrue(exampleStat.equals(oneStat.first()));
     }
 }
