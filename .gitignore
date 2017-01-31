@@ -14,3 +14,6 @@ hs_err_pid*
 .gradle/
 # Build folder
 build/
+# CalorieTracker persistence files
+*.ctdb
+*.cfg
