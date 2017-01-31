@@ -1,4 +1,4 @@
-package agh.edu.layoutCreation;
+package agh.edu.layout;
 
 import agh.edu.model.UserConfig;
 import javafx.geometry.Insets;
@@ -48,10 +48,23 @@ public class MainLayoutCreator {
     }
 
     private void createMainWindow() {
-        TextCreator textCreator = new TextCreator(userConfig, windowHeight);
+        int paddingLeft = 40;
+        int paddingRight = 40;
+        int paddingTop = 40;
+        int paddingBottom = 20;
+        Insets padding = new Insets(paddingTop, paddingRight, paddingBottom, paddingLeft);
+        mainWindow.setPadding(padding); // TODO: Think about dynamic
+
+        TextCreator textCreator = new TextCreator(userConfig, padding, windowHeight, (windowWidth * 4) / 5);
+        NutritionInfoContainerCreator nutritionInfoContainerCreator = new SoftRectangleNutritionContainer(userConfig, padding, windowHeight, (windowWidth * 4) / 5);
+
 
         mainWindow.getChildren().add(textCreator.getGreetingText());
-        mainWindow.setPadding(new Insets(30, 30, 20, 40)); // TODO: Think about dynamic
+        mainWindow.getChildren().addAll(
+                nutritionInfoContainerCreator.getCalorieInfo(),
+                nutritionInfoContainerCreator.getMacroInfo(),
+                nutritionInfoContainerCreator.getMicroInfo()
+        );
     }
 
     public BorderPane createMainLayout() {

@@ -1,6 +1,6 @@
 package agh.edu;
 
-import agh.edu.layoutCreation.MainLayoutCreator;
+import agh.edu.layout.MainLayoutCreator;
 import agh.edu.model.FoodInfo;
 import agh.edu.model.UserConfig;
 import agh.edu.parsers.NutritionalDataParser;

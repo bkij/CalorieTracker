@@ -66,3 +66,14 @@
 {
     -fx-background-color: #f4f4f9;
 }
+
+.softRectVBox
+{
+    -fx-font-size: 15pt;
+    -fx-background-color: #b8dbd9;
+    -fx-background-radius: 20.0;
+    -fx-border-style: solid inside;
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-border-radius: 20.0;
+}
