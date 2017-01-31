@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class USDAParser implements NutritionalDataParser {
-    private final int numNutritionFields = 46;
+    private final int NUM_NUTRITION_FIELDS = 46;
     private final String filesDir;
     private final String fileName;
 
@@ -49,7 +49,7 @@ public class USDAParser implements NutritionalDataParser {
         for(int i = 0; i < nutInfo.length; i++) {
             nutInfo[i] = Double.parseDouble(parts[i + 2]);
         }
-        if(nutInfo.length != numNutritionFields) {
+        if(nutInfo.length != NUM_NUTRITION_FIELDS) {
             throw new ParsingException("File format problem");
         }
         setNutritionalInfo(currentFoodInfo, nutInfo, parts[1]);
