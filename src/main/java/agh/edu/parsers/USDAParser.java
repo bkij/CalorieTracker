@@ -27,7 +27,7 @@ public class USDAParser implements NutritionalDataParser {
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filesDir + fileName);
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-            for(String currentLine = reader.readLine(); currentLine != null; currentLine = reader.readLine()) {
+            for(String currentLine = reader.readLine(); currentLine != null && !currentLine.isEmpty(); currentLine = reader.readLine()) {
                 FoodInfo currentFoodInfo = getInfoForCurrentLine(currentLine);
                 foodData.add(currentFoodInfo);
             }
@@ -47,9 +47,15 @@ public class USDAParser implements NutritionalDataParser {
         double[] nutInfo = new double[parts.length - 7];
 
         for(int i = 0; i < nutInfo.length; i++) {
-            nutInfo[i] = Double.parseDouble(parts[i + 2]);
+            if(parts[i+2].isEmpty()) {
+                // Missing value -> 0 nutritional value
+                nutInfo[i] = 0.0;
+            } else {
+                nutInfo[i] = Double.parseDouble(parts[i + 2]);
+            }
         }
-        if(nutInfo.length != NUM_NUTRITION_FIELDS) {
+        // Sometimes the last value (percent residue) is missing in the file - that's a bug in the file, not program
+        if(nutInfo.length != NUM_NUTRITION_FIELDS && nutInfo.length != NUM_NUTRITION_FIELDS - 1) {
             throw new ParsingException("File format problem");
         }
         setNutritionalInfo(currentFoodInfo, nutInfo, parts[1]);
