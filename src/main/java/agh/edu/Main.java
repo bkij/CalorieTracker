@@ -13,6 +13,7 @@ import agh.edu.storage.inMemory.StatisticFileStorage;
 import agh.edu.storage.inMemory.UserConfigFileStorage;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -48,7 +49,9 @@ public class Main extends Application {
         UserConfig currentUserConfig = userConfigStorage.get();
         MainLayoutCreator mainLayoutCreator = new MainLayoutCreator(currentUserConfig, initialWidth, initialHeight);
 
-        Scene primaryScene = new Scene(mainLayoutCreator.createMainLayout(), initialWidth, initialHeight);
+        BorderPane mainLayout = mainLayoutCreator.createMainLayout();
+
+        Scene primaryScene = new Scene(mainLayout, initialWidth, initialHeight);
         primaryScene.getStylesheets().add("stylesheets/style.css");
         stage.setScene(primaryScene);
         stage.setTitle("CalorieTracker");
