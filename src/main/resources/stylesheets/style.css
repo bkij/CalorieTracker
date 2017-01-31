@@ -6,8 +6,10 @@
     -fx-min-height: 150px;
     -fx-max-width: 150px;
     -fx-max-height: 150px;
+    -fx-background-position: center;
     -fx-background-size: 150px 150px;
     -fx-background-repeat: no-repeat;
+    -fx-background-color: #dbedff;
     -fx-background-image: url("../images/add2.png");
 }
 .changeDayButton
@@ -19,6 +21,7 @@
     -fx-max-height: 150px;
     -fx-background-size: 150px 150px;
     -fx-background-repeat: no-repeat;
+    -fx-background-color: #dbedff;
     -fx-background-image: url("../images/calendar.png");
 }
 .optionsButton
@@ -30,6 +33,7 @@
     -fx-max-height: 150px;
     -fx-background-size: 150px 150px;
     -fx-background-repeat: no-repeat;
+    -fx-background-color: #dbedff;
     -fx-background-image: url("../images/options.png");
 }
 .statsButton
@@ -41,6 +45,7 @@
     -fx-max-height: 150px;
     -fx-background-size: 150px 150px;
     -fx-background-repeat: no-repeat;
+    -fx-background-color: #dbedff;
     -fx-background-image: url("../images/stats.png");
 }
 .VBox
@@ -50,16 +55,19 @@
 
 .greetingText
 {
-    -fx-font-size: 50pt;
+    -fx-font-size: 51pt;
     -fx-fill: black;
+    -fx-font-style: italic;
     -fx-font-weight: 600;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.7) , 0,0,0,1 );
 }
 
 .followupText
 {
     -fx-font-size: 13pt;
-    -fx-fill: #575b62;
+    -fx-fill: black;      /* Previous: #575b62 */
     -fx-font-style: italic;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.7) , 0,0,0,1 );
 }
 .dateText
 {
@@ -71,19 +79,32 @@
 {
     -fx-background-color: #f4f4f9;
 }
+.mainWindow
+{
+    -fx-background-position: center;
+    -fx-background-image: url("../images/bgPhoto2lightened2.jpeg");
+    -fx-background-size: 150% 100%;
+    -fx-background-repeat: no-repeat;
+}
 
 .softRectVBox
 {
     -fx-font-size: 15pt;
-    -fx-background-color: #b8dbd9;
-    -fx-background-radius: 20.0;
+    -fx-background-color: rgba(219, 237, 255, 0.75); /* semi transparent #dbedff */
+    -fx-background-radius: 5.0;
     -fx-border-style: solid inside;
-    -fx-border-color: #2f4550;
+    -fx-border-color: #284c6c;
     -fx-border-width: 2.5;
-    -fx-border-radius: 20.0;
+    -fx-border-radius: 5.0;
 }
 
 .nutritionValuesText
 {
-    -fx-font-size: 12pt;
+    -fx-font-size: 11pt;
+    -fx-font-weight: bold;
+}
+
+.nutritionLabelText
+{
+    -fx-font-weight: bold;
 }

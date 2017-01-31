@@ -48,15 +48,15 @@ public class MainLayoutCreator {
     }
 
     private void createMainWindow() {
-        int paddingLeft = 30;
-        int paddingRight = 30;
+        int paddingLeft = 40;
+        int paddingRight = 40;
         int paddingTop = 40;
         int paddingBottom = 20;
         Insets padding = new Insets(paddingTop, paddingRight, paddingBottom, paddingLeft);
         mainWindow.setPadding(padding); // TODO: Think about dynamic
 
-        int hgap = 20;
-        int vgap = 20;
+        int hgap = 40;                  // TODO: Again, think about dynamic
+        int vgap = 50;
         mainWindow.setHgap(hgap);
         mainWindow.setVgap(vgap);
 
@@ -72,6 +72,8 @@ public class MainLayoutCreator {
                 nutritionInfoContainerCreator.getMacroInfo(),
                 nutritionInfoContainerCreator.getMicroInfo()
         );
+
+        mainWindow.getStyleClass().add("mainWindow");
     }
 
     public BorderPane createMainLayout() {

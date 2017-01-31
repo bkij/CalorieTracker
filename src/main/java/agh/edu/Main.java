@@ -52,6 +52,7 @@ public class Main extends Application {
         primaryScene.getStylesheets().add("stylesheets/style.css");
         stage.setScene(primaryScene);
         stage.setTitle("CalorieTracker");
+        stage.setResizable(false);
         stage.show();
     }
 

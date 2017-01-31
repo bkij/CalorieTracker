@@ -48,12 +48,13 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
     public VBox getCalorieInfo() {
         VBox calorieContainer = getBasicStyledVBox();
         calorieBoxWidth = (containerAreaWidth / 4) - parentHGap;
-        calorieBoxHeight = parentHeight / 4;
+        calorieBoxHeight = parentHeight / 6;
 
         TextFlow calorieLabel = new TextFlow(new Text("Calories:"));
         calorieLabel.setMinWidth(calorieBoxWidth);
         calorieLabel.setMinHeight(calorieBoxHeight / 3);
         calorieLabel.setTextAlignment(TextAlignment.CENTER);
+        calorieLabel.getStyleClass().add("nutritionLabelText");
 
         TextFlow calorieValues = new TextFlow(currentCalories, new Text(" / " + userConfig.getBMR() + " kcal"));
         calorieValues.setTextAlignment(TextAlignment.CENTER);
@@ -79,6 +80,7 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         proteinLabel.setMinWidth(macroRegionWidth);
         proteinLabel.setMinHeight(macroBoxHeight / 3);
         proteinLabel.setTextAlignment(TextAlignment.CENTER);
+        proteinLabel.getStyleClass().add("nutritionLabelText");
 
         TextFlow proteinValues = new TextFlow(currentProt, new Text(" / " + userConfig.getProtein() + " grams"));
         proteinValues.setTextAlignment(TextAlignment.CENTER);
@@ -95,6 +97,7 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         carbsLabel.setMinWidth(macroRegionWidth);
         carbsLabel.setMinHeight(macroBoxHeight / 3);
         carbsLabel.setTextAlignment(TextAlignment.CENTER);
+        carbsLabel.getStyleClass().add("nutritionLabelText");
 
         TextFlow carbValues = new TextFlow(currentCarbs, new Text(" / " + userConfig.getCarbs() + " grams"));
         carbValues.setTextAlignment(TextAlignment.CENTER);
@@ -111,6 +114,7 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         fatLabel.setMinWidth(macroRegionWidth);
         fatLabel.setMinHeight(macroBoxHeight / 3);
         fatLabel.setTextAlignment(TextAlignment.CENTER);
+        fatLabel.getStyleClass().add("nutritionLabelText");
 
         TextFlow fatValues = new TextFlow(currentFat, new Text(" / " + userConfig.getFat() + " grams"));
         fatValues.setTextAlignment(TextAlignment.CENTER);
@@ -139,6 +143,7 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         microLabel.setMinWidth(containerWidth);
         microLabel.setMinHeight(containerHeight / 3);
         microLabel.setTextAlignment(TextAlignment.CENTER);
+        microLabel.getStyleClass().add("nutritionLabelText");
 
         microContainer.getChildren().addAll(microLabel);
         microContainer.setMinWidth(containerWidth);

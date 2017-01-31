@@ -23,9 +23,9 @@ public class UserConfig implements Serializable {
      * in grams
      */
 
-    private double protein = 130;
-    private double fat = 44.5;      // Based on RDA of 20% of total calories
-    private double carbs = 56;
+    private double protein = 50;
+    private double fat = 78;
+    private double carbs = 275;
 
     /*
      * Micronutrients
