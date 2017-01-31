@@ -1,5 +1,6 @@
 package agh.edu.layout;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -59,6 +60,7 @@ public class CircularButtonCreator implements ButtonCreator {
     private Button createOptionsButton() {
         Button showOptions = new Button();
         showOptions.getStyleClass().add("optionsButton");
+        showOptions.setOnMousePressed(event -> new Alert(Alert.AlertType.INFORMATION, "Coming soon").showAndWait());
         return showOptions;
     }
 }

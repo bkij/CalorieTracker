@@ -1,7 +1,9 @@
 package agh.edu;
 
+import agh.edu.controllers.ButtonsController;
 import agh.edu.layout.MainLayoutCreator;
 import agh.edu.model.FoodInfo;
+import agh.edu.model.Statistic;
 import agh.edu.model.UserConfig;
 import agh.edu.parsers.NutritionalDataParser;
 import agh.edu.parsers.USDAParser;
@@ -16,12 +18,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main extends Application {
     private UserConfigStorage userConfigStorage;
     private StatisticsStorage statisticsStorage;
     private FoodInfoStorage foodInfoStorage;
+    private ButtonsController buttonsController;
 
     @Override
     public void init() {
@@ -39,6 +43,10 @@ public class Main extends Application {
             createFoodDatabase(foodInfoStorage);
             createDefaultConfig(userConfigStorage);
         }
+
+        if(statisticsStorage.getByPredicate(stat -> stat.getDate().equals(LocalDate.now())).isEmpty()) {
+            statisticsStorage.save(new Statistic());    // Creates new statistic for today
+        }
     }
 
     @Override
@@ -46,9 +54,16 @@ public class Main extends Application {
         int initialWidth = 1024;
         int initialHeight = 768;
 
+        Statistic currentDayStats = statisticsStorage.getByPredicate(stat -> stat.getDate().equals(LocalDate.now())).first();
         UserConfig currentUserConfig = userConfigStorage.get();
-        MainLayoutCreator mainLayoutCreator = new MainLayoutCreator(currentUserConfig, initialWidth, initialHeight);
+        MainLayoutCreator mainLayoutCreator = new MainLayoutCreator(currentUserConfig, currentDayStats, initialWidth, initialHeight);
 
+        /*
+         * A bit of a hack here - buttons controller MUST be created before buttons are,
+         * so actions can be attached to the buttons. Null pointers probably incoming if the
+         * order is not respected
+         */
+        buttonsController = new ButtonsController(mainLayoutCreator.getAllWindows());
         BorderPane mainLayout = mainLayoutCreator.createMainLayout();
 
         Scene primaryScene = new Scene(mainLayout, initialWidth, initialHeight);

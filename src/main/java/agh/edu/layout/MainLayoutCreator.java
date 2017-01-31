@@ -1,5 +1,6 @@
 package agh.edu.layout;
 
+import agh.edu.model.Statistic;
 import agh.edu.model.UserConfig;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,14 +18,19 @@ public class MainLayoutCreator {
     private final int windowWidth;
     private final int windowHeight;
     private UserConfig userConfig;
+    private Statistic currentDayStats;
 
     private final VBox menu = new VBox();
     private final FlowPane mainWindow = new FlowPane();
+    private final FlowPane statisticsWindow = new FlowPane();
+    private final FlowPane addMealWindow = new FlowPane();
+    private final FlowPane changeDayWindow = new FlowPane();
 
-    public MainLayoutCreator(UserConfig userConfig, int windowWidth, int windowHeight) {
+    public MainLayoutCreator(UserConfig userConfig, Statistic currentDayStats, int windowWidth, int windowHeight) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         this.userConfig = userConfig;
+        this.currentDayStats = currentDayStats;
     }
 
     private void createMenuBox() {
@@ -87,5 +94,14 @@ public class MainLayoutCreator {
         mainLayout.getStyleClass().add("mainLayout");
 
         return mainLayout;
+    }
+
+    public List<FlowPane> getAllWindows() {
+        List<FlowPane> windows = new ArrayList<>();
+        windows.add(mainWindow);
+        windows.add(changeDayWindow);
+        windows.add(addMealWindow);
+        windows.add(statisticsWindow);
+        return windows;
     }
 }
