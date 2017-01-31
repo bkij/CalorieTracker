@@ -27,9 +27,10 @@ public class USDAParser implements NutritionalDataParser {
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filesDir + fileName);
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-            String currentLine = reader.readLine();
-            FoodInfo currentFoodInfo = getInfoForCurrentLine(currentLine);
-            foodData.add(currentFoodInfo);
+            for(String currentLine = reader.readLine(); currentLine != null; currentLine = reader.readLine()) {
+                FoodInfo currentFoodInfo = getInfoForCurrentLine(currentLine);
+                foodData.add(currentFoodInfo);
+            }
 
         } catch(IOException ex) {
             //TODO: Change?
