@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
+
 public class TextCreator {
     private UserConfig userConfig;
     private Insets parentPadding;
@@ -22,14 +23,15 @@ public class TextCreator {
     public TextFlow getGreetingText() {
         Text greetingText = new Text("Hello, " + userConfig.getUserName() + "!\n");
         greetingText.getStyleClass().add("greetingText");
+
         Text followupText = new Text("       Your nutritional balance for today: "); // Spaces for alignment, lol
         followupText.getStyleClass().add("followupText");
 
         TextFlow textFlow = new TextFlow(greetingText, followupText);
         textFlow.setTextAlignment(TextAlignment.LEFT);
-        textFlow.setLineSpacing(15);
+        textFlow.setLineSpacing(10);
         textFlow.setMinHeight(parentHeight / 5);
-        textFlow.setMinWidth(parentWidth - parentPadding.getLeft() - parentPadding.getRight());
+        textFlow.setMinWidth(2 * (parentWidth - parentPadding.getLeft() - parentPadding.getRight()) / 3);
 
         return textFlow;
     }

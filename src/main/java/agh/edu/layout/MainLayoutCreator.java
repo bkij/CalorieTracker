@@ -48,18 +48,25 @@ public class MainLayoutCreator {
     }
 
     private void createMainWindow() {
-        int paddingLeft = 40;
-        int paddingRight = 40;
+        int paddingLeft = 30;
+        int paddingRight = 30;
         int paddingTop = 40;
         int paddingBottom = 20;
         Insets padding = new Insets(paddingTop, paddingRight, paddingBottom, paddingLeft);
         mainWindow.setPadding(padding); // TODO: Think about dynamic
 
+        int hgap = 20;
+        int vgap = 20;
+        mainWindow.setHgap(hgap);
+        mainWindow.setVgap(vgap);
+
         TextCreator textCreator = new TextCreator(userConfig, padding, windowHeight, (windowWidth * 4) / 5);
-        NutritionInfoContainerCreator nutritionInfoContainerCreator = new SoftRectangleNutritionContainer(userConfig, padding, windowHeight, (windowWidth * 4) / 5);
+        DateLabelCreator dateLabelCreator = new DateLabelCreator(windowWidth, windowHeight, padding);
+        NutritionInfoContainerCreator nutritionInfoContainerCreator = new SoftRectangleNutritionContainer(userConfig, padding, windowHeight, (windowWidth * 4) / 5, vgap, hgap);
 
 
         mainWindow.getChildren().add(textCreator.getGreetingText());
+        mainWindow.getChildren().add(dateLabelCreator.getDateLabel());
         mainWindow.getChildren().addAll(
                 nutritionInfoContainerCreator.getCalorieInfo(),
                 nutritionInfoContainerCreator.getMacroInfo(),

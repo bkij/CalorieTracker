@@ -57,9 +57,14 @@
 
 .followupText
 {
-    -fx-font-size: 16pt;
+    -fx-font-size: 13pt;
     -fx-fill: #575b62;
     -fx-font-style: italic;
+}
+.dateText
+{
+    -fx-font-size: 14pt;
+    -fx-fill: black;
 }
 
 .mainLayout
@@ -73,7 +78,12 @@
     -fx-background-color: #b8dbd9;
     -fx-background-radius: 20.0;
     -fx-border-style: solid inside;
-    -fx-border-color: black;
-    -fx-border-width: 3;
+    -fx-border-color: #2f4550;
+    -fx-border-width: 2.5;
     -fx-border-radius: 20.0;
+}
+
+.nutritionValuesText
+{
+    -fx-font-size: 12pt;
 }
