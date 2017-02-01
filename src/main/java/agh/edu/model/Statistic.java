@@ -46,31 +46,31 @@ public class Statistic implements Serializable, Comparable<Statistic> {
         return totalKcal;
     }
 
-    public void setTotalKcal(double totalKcal) {
-        this.totalKcal = totalKcal;
+    public void addKcal(double kcal) {
+        this.totalKcal += kcal;
     }
 
     public double getTotalProt() {
         return totalProt;
     }
 
-    public void setTotalProt(double totalProt) {
-        this.totalProt = totalProt;
+    public void addProt(double prot) {
+        this.totalProt += prot;
     }
 
     public double getTotalCarbs() {
         return totalCarbs;
     }
 
-    public void setTotalCarbs(double totalCarbs) {
-        this.totalCarbs = totalCarbs;
+    public void addCarbs(double carbs) {
+        this.totalCarbs += carbs;
     }
 
     public double getTotalFat() {
         return totalFat;
     }
 
-    public void setTotalFat(double totalFat) {
-        this.totalFat = totalFat;
+    public void addFat(double fat) {
+        this.totalFat += fat;
     }
 }
