@@ -62,7 +62,7 @@ public class MainLayoutCreator {
         Insets padding = new Insets(paddingTop, paddingRight, paddingBottom, paddingLeft);
         mainWindow.setPadding(padding); // TODO: Think about dynamic
 
-        int hgap = 40;                  // TODO: Again, think about dynamic
+        int hgap = 30;                  // TODO: Again, think about dynamic
         int vgap = 50;
         mainWindow.setHgap(hgap);
         mainWindow.setVgap(vgap);
