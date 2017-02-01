@@ -60,7 +60,7 @@ public class Main extends Application {
 
         /*
          * A bit of a hack here - buttons controller MUST be created before buttons are,
-         * so actions can be attached to the buttons. Null pointers probably incoming if the
+         * so actions can be attached to the buttons. Null pointers incoming if the
          * order is not respected
          */
         buttonsController = new ButtonsController(mainLayoutCreator.getWindowsReferences(), mainLayoutCreator.getLayoutReference());

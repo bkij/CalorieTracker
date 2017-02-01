@@ -78,13 +78,13 @@
 .mainLayout
 {
     -fx-background-color: #f4f4f9;
+    -fx-background-position: 0px 0px;
+    -fx-background-image: url("../images/bgPhoto2lightened2.jpeg");
+    -fx-background-size: 1152px 768px;
+    -fx-background-repeat: no-repeat;
 }
 .mainWindow
 {
-    -fx-background-position: center;
-    -fx-background-image: url("../images/bgPhoto2lightened2.jpeg");
-    -fx-background-size: 150% 100%;
-    -fx-background-repeat: no-repeat;
 }
 
 .softRectVBox
