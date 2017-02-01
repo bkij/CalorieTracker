@@ -25,6 +25,7 @@ public class MainLayoutCreator {
     private final FlowPane statisticsWindow = new FlowPane();
     private final FlowPane addMealWindow = new FlowPane();
     private final FlowPane changeDayWindow = new FlowPane();
+    private final BorderPane mainLayout = new BorderPane();
 
     public MainLayoutCreator(UserConfig userConfig, Statistic currentDayStats, int windowWidth, int windowHeight) {
         this.windowWidth = windowWidth;
@@ -84,8 +85,6 @@ public class MainLayoutCreator {
     }
 
     public BorderPane createMainLayout() {
-        BorderPane mainLayout = new BorderPane();
-
         createMenuBox();
         createMainWindow();
         mainLayout.setLeft(menu);
@@ -96,12 +95,16 @@ public class MainLayoutCreator {
         return mainLayout;
     }
 
-    public List<FlowPane> getAllWindows() {
+    public List<FlowPane> getWindowsReferences() {
         List<FlowPane> windows = new ArrayList<>();
         windows.add(mainWindow);
         windows.add(changeDayWindow);
         windows.add(addMealWindow);
         windows.add(statisticsWindow);
         return windows;
+    }
+
+    public BorderPane getLayoutReference() {
+        return mainLayout;
     }
 }

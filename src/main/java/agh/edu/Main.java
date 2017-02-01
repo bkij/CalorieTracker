@@ -63,7 +63,7 @@ public class Main extends Application {
          * so actions can be attached to the buttons. Null pointers probably incoming if the
          * order is not respected
          */
-        buttonsController = new ButtonsController(mainLayoutCreator.getAllWindows());
+        buttonsController = new ButtonsController(mainLayoutCreator.getWindowsReferences(), mainLayoutCreator.getLayoutReference());
         BorderPane mainLayout = mainLayoutCreator.createMainLayout();
 
         Scene primaryScene = new Scene(mainLayout, initialWidth, initialHeight);

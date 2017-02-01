@@ -4,6 +4,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.controlsfx.control.action.ActionMap;
+import org.controlsfx.control.action.ActionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class CircularButtonCreator implements ButtonCreator {
 
     // TODO: Add all the logic
     private Button createDayChangeButton() {
-        Button changeDay = new Button();
+        Button changeDay = ActionUtils.createButton(ActionMap.action("addButton"));
         changeDay.getStyleClass().add("changeDayButton");
 
         return changeDay;
