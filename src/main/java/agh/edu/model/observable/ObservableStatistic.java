@@ -15,8 +15,8 @@ public class ObservableStatistic {
     private DoubleProperty carbsProperty;
     private DoubleProperty fatProperty;
 
-    public ObservableStatistic(LocalDate dateProperty, double totalKcal, double totalProt, double totalCarbs, double totalFat) {
-        this.dateProperty = new SimpleObjectProperty<>(dateProperty);
+    public ObservableStatistic(LocalDate date, double totalKcal, double totalProt, double totalCarbs, double totalFat) {
+        this.dateProperty = new SimpleObjectProperty<>(date);
         this.kcalProperty = new SimpleDoubleProperty(totalKcal);
         this.protProperty = new SimpleDoubleProperty(totalProt);
         this.carbsProperty = new SimpleDoubleProperty(totalCarbs);
