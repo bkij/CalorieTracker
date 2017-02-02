@@ -99,8 +99,6 @@ public class ButtonsController {
 
             double multiplier = Double.parseDouble(grams.get()) / 100;
 
-            System.out.println(multiplier);
-
             tableView.addKcalToTotal(selectedFoodInfo.getKcal() * multiplier);
             tableView.addCarbsToTotal(selectedFoodInfo.getCarbs() * multiplier);
             tableView.addProtToTotal(selectedFoodInfo.getProt() * multiplier);
