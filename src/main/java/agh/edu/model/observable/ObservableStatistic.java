@@ -27,6 +27,8 @@ public class ObservableStatistic {
         return new ObservableStatistic(stat.getDate(), stat.getTotalKcal(), stat.getTotalProt(), stat.getTotalCarbs(), stat.getTotalFat());
     }
 
+    public ObjectProperty<LocalDate> getDateProperty() { return dateProperty; }
+
     public DoubleProperty getKcalProperty() {
         return kcalProperty;
     }

@@ -72,7 +72,7 @@ public class MainLayoutCreator {
         mainWindow.setVgap(vgap);
 
         TextCreator textCreator = new TextCreator(currentInfo, padding, windowHeight, (windowWidth * 4) / 5);
-        DateLabelCreator dateLabelCreator = new DateLabelCreator(windowWidth, windowHeight, padding);
+        DateLabelCreator dateLabelCreator = new DateLabelCreator(currentInfo, windowWidth, windowHeight, padding);
         NutritionInfoContainerCreator nutritionInfoContainerCreator = new SoftRectangleNutritionContainer(currentInfo, padding, windowHeight, (windowWidth * 4) / 5, vgap, hgap);
 
 

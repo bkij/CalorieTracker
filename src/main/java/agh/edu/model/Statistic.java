@@ -11,7 +11,11 @@ public class Statistic implements Serializable, Comparable<Statistic> {
     private double totalFat;
 
     public Statistic() {
-        date = LocalDate.now();
+        this(LocalDate.now());
+    }
+
+    public Statistic(LocalDate date) {
+        this.date = date;
         totalKcal = 0.0;
         totalProt = 0.0;
         totalCarbs = 0.0;

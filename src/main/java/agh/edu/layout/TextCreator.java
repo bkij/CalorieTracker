@@ -2,13 +2,14 @@ package agh.edu.layout;
 
 
 import agh.edu.model.observable.CurrentInfo;
+import agh.edu.model.observable.ObservableUserConfig;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.Property;
 import javafx.geometry.Insets;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
+import org.fxmisc.easybind.EasyBind;
 
 
 public class TextCreator {
@@ -16,7 +17,7 @@ public class TextCreator {
     private Insets parentPadding;
     private int parentHeight;
     private int parentWidth;
-    private StringProperty userNameProperty;
+    private Property<String> userNameProperty;
 
     public TextCreator(CurrentInfo currentInfo, Insets parentPadding, int parentHeight, int parentWidth) {
         this.currentInfo = currentInfo;
@@ -24,8 +25,7 @@ public class TextCreator {
         this.parentWidth = parentWidth;
         this.parentPadding = parentPadding;
 
-        this.userNameProperty = new SimpleStringProperty();
-        this.userNameProperty.bind(currentInfo.getObservableConfig().getUserNameProperty());
+        this.userNameProperty = EasyBind.monadic(currentInfo.observableUserConfigProperty()).selectProperty(ObservableUserConfig::getUserNameProperty);
     }
     public TextFlow getGreetingText() {
         // TODO: bind to username

@@ -1,19 +1,24 @@
 package agh.edu.controllers;
 
+import agh.edu.model.Statistic;
 import agh.edu.model.observable.CurrentInfo;
 import agh.edu.storage.StorageAggregator;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import org.controlsfx.control.action.ActionMap;
 import org.controlsfx.control.action.ActionProxy;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class ButtonsController {
-    StorageAggregator storages;
-    CurrentInfo currentInfo;
+    private StorageAggregator storages;
+    private CurrentInfo currentInfo;
     // The controller needs those references to change windows on button click
     private FlowPane mainWindow;
     private FlowPane changeDayWindow;
@@ -53,10 +58,26 @@ public class ButtonsController {
         new Alert(Alert.AlertType.INFORMATION, "Coming soon").showAndWait();
     }
     /* Add meal buttons */
+
     /* Change day buttons */
     @ActionProxy(text="")
     public void changeDayOK(ActionEvent event) {
-        // TODO: date stuff
+        Optional<Node> windowDatePicker = changeDayWindow.getChildren().stream().filter(child -> child.getClass() == DatePicker.class).findFirst();
+        if(!windowDatePicker.isPresent()) {
+            new Alert(Alert.AlertType.ERROR, "Fatal error - couldn't change day").showAndWait();
+        }
+        else {
+            LocalDate newDate = ((DatePicker)windowDatePicker.get()).getValue();
+            Optional<Statistic> stat = storages.getStatisticsStorage().getByDate(newDate);
+            if(!stat.isPresent()) {
+                Statistic newStat = new Statistic(newDate);
+                storages.getStatisticsStorage().save(newStat);
+                currentInfo.setCurrentDayStats(newStat);
+            }
+            else {
+                currentInfo.setCurrentDayStats(stat.get());
+            }
+        }
         mainLayout.setCenter(mainWindow);
     }
     @ActionProxy(text="")

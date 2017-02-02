@@ -5,6 +5,7 @@ import agh.edu.model.UserConfig;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
+
 public class CurrentInfo {
     private ObjectProperty<ObservableStatistic> currentDayStats;
     private ObjectProperty<ObservableUserConfig> currentUserConfig;
@@ -12,7 +13,14 @@ public class CurrentInfo {
     public CurrentInfo(Statistic currentDayStats, UserConfig currentUserConfig) {
         this.currentDayStats = new SimpleObjectProperty<>(ObservableStatistic.fromStatistic(currentDayStats));
         this.currentUserConfig = new SimpleObjectProperty<>(ObservableUserConfig.fromUserConfig(currentUserConfig));
-        // TODO: binding/listening here?
+    }
+
+    public ObjectProperty<ObservableStatistic> observableStatisticProperty() {
+        return currentDayStats;
+    }
+
+    public ObjectProperty<ObservableUserConfig> observableUserConfigProperty() {
+        return currentUserConfig;
     }
 
     public ObservableUserConfig getObservableConfig() {
@@ -21,5 +29,9 @@ public class CurrentInfo {
 
     public ObservableStatistic getObservableStatistic() {
         return currentDayStats.get();
+    }
+
+    public void setCurrentDayStats(Statistic newDayStats) {
+        currentDayStats.setValue(ObservableStatistic.fromStatistic(newDayStats));
     }
 }

@@ -1,29 +1,36 @@
 package agh.edu.layout;
 
+import agh.edu.model.observable.CurrentInfo;
+import agh.edu.model.observable.ObservableStatistic;
+import javafx.beans.binding.Binding;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.fxmisc.easybind.EasyBind;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateLabelCreator {
     private int parentWidth;
     private int parentHeight;
     private Insets parentPadding;
+    private Binding<String> dateTextBinding;
 
-    public DateLabelCreator(int parentWidth, int parentHeight, Insets parentPadding) {
+    public DateLabelCreator(CurrentInfo currentInfo, int parentWidth, int parentHeight, Insets parentPadding) {
         this.parentWidth = parentWidth;
         this.parentHeight = parentHeight;
         this.parentPadding = parentPadding;
+
+        dateTextBinding = EasyBind.monadic(currentInfo.observableStatisticProperty())
+                .selectProperty(ObservableStatistic::getDateProperty)
+                .map(date -> DateTimeFormatter.ofPattern("dd MMMM yyyy").format(date));
     }
 
     public Label getDateLabel() {
-        LocalDate currentDate = LocalDate.now();
-        String dateString = DateTimeFormatter.ofPattern(" dd MMMM yyyy\n").format(currentDate);
-        Label dateLabel = new Label(dateString);
+        Label dateLabel = new Label();
+        dateLabel.textProperty().bind(dateTextBinding);
 
         Image smallCalendarIcon = new Image(getClass().getClassLoader().getResourceAsStream("images/smallCalendar.png"));
         dateLabel.setGraphic(new ImageView(smallCalendarIcon));

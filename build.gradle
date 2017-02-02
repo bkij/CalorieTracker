@@ -1,8 +1,10 @@
 apply plugin: 'java'
 
 repositories {
-    mavenCentral()
-    url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    maven {
+        mavenCentral()
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
 }
 
 dependencies {

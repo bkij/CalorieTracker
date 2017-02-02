@@ -6,6 +6,8 @@ import agh.edu.storage.StatisticsStorage;
 import agh.edu.util.Utils;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.function.Predicate;
@@ -52,5 +54,10 @@ public class StatisticFileStorage implements StatisticsStorage {
     @Override
     public SortedSet<Statistic> getByPredicate(Predicate<Statistic> predicate) {
         return new TreeSet<>(stats.stream().filter(predicate).collect(Collectors.toSet()));
+    }
+
+    @Override
+    public Optional<Statistic> getByDate(LocalDate date) {
+        return stats.stream().filter(stat -> stat.getDate().equals(date)).findFirst();
     }
 }
