@@ -1,7 +1,10 @@
 package agh.edu.layout;
 
 
-import agh.edu.model.UserConfig;
+import agh.edu.model.observable.CurrentInfo;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -9,19 +12,25 @@ import javafx.scene.text.TextFlow;
 
 
 public class TextCreator {
-    private UserConfig userConfig;
+    private CurrentInfo currentInfo;
     private Insets parentPadding;
     private int parentHeight;
     private int parentWidth;
+    private StringProperty userNameProperty;
 
-    public TextCreator(UserConfig userConfig, Insets parentPadding, int parentHeight, int parentWidth) {
-        this.userConfig = userConfig;
+    public TextCreator(CurrentInfo currentInfo, Insets parentPadding, int parentHeight, int parentWidth) {
+        this.currentInfo = currentInfo;
         this.parentHeight = parentHeight;
         this.parentWidth = parentWidth;
         this.parentPadding = parentPadding;
+
+        this.userNameProperty = new SimpleStringProperty();
+        this.userNameProperty.bind(currentInfo.getObservableConfig().getUserNameProperty());
     }
     public TextFlow getGreetingText() {
-        Text greetingText = new Text("Hello, " + userConfig.getUserName() + "!\n");
+        // TODO: bind to username
+        Text greetingText = new Text();
+        greetingText.textProperty().bind(Bindings.concat("Hello, ", userNameProperty, "!\n"));
         greetingText.getStyleClass().add("greetingText");
 
         Text followupText = new Text("       Your nutritional balance for today: "); // Spaces for alignment, lol

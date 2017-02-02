@@ -1,7 +1,6 @@
 package agh.edu.layout;
 
-import agh.edu.model.Statistic;
-import agh.edu.model.UserConfig;
+import agh.edu.model.observable.CurrentInfo;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -17,8 +16,7 @@ import java.util.List;
 public class MainLayoutCreator {
     private final int windowWidth;
     private final int windowHeight;
-    private UserConfig userConfig;
-    private Statistic currentDayStats;
+    private CurrentInfo currentInfo;
 
     private final VBox menu = new VBox();
     private final FlowPane mainWindow = new FlowPane();
@@ -27,11 +25,10 @@ public class MainLayoutCreator {
     private final FlowPane changeDayWindow = new FlowPane();
     private final BorderPane mainLayout = new BorderPane();
 
-    public MainLayoutCreator(UserConfig userConfig, Statistic currentDayStats, int windowWidth, int windowHeight) {
+    public MainLayoutCreator(CurrentInfo currentInfo, int windowWidth, int windowHeight) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
-        this.userConfig = userConfig;
-        this.currentDayStats = currentDayStats;
+        this.currentInfo = currentInfo;
     }
 
     private void createMenuBox() {
@@ -68,9 +65,9 @@ public class MainLayoutCreator {
         mainWindow.setHgap(hgap);
         mainWindow.setVgap(vgap);
 
-        TextCreator textCreator = new TextCreator(userConfig, padding, windowHeight, (windowWidth * 4) / 5);
+        TextCreator textCreator = new TextCreator(currentInfo, padding, windowHeight, (windowWidth * 4) / 5);
         DateLabelCreator dateLabelCreator = new DateLabelCreator(windowWidth, windowHeight, padding);
-        NutritionInfoContainerCreator nutritionInfoContainerCreator = new SoftRectangleNutritionContainer(userConfig, padding, windowHeight, (windowWidth * 4) / 5, vgap, hgap);
+        NutritionInfoContainerCreator nutritionInfoContainerCreator = new SoftRectangleNutritionContainer(currentInfo, padding, windowHeight, (windowWidth * 4) / 5, vgap, hgap);
 
 
         mainWindow.getChildren().add(textCreator.getGreetingText());

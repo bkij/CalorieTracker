@@ -1,7 +1,9 @@
 package agh.edu.layout;
 
 import agh.edu.layout.customComponents.PercentProgressIndicator;
-import agh.edu.model.UserConfig;
+import agh.edu.model.observable.CurrentInfo;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -11,8 +13,21 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
+// TODO: Refactor this for the love of god
 public class SoftRectangleNutritionContainer implements NutritionInfoContainerCreator {
-    private UserConfig userConfig;
+    /* Properties */
+    private DoubleProperty BMR;
+    private DoubleProperty protRequirement;
+    private DoubleProperty carbRequirement;
+    private DoubleProperty fatRequirement;
+
+    private DoubleProperty currentCalories;
+    private DoubleProperty currentProt;
+    private DoubleProperty currentCarb;
+    private DoubleProperty currentFat;
+
+    /* Non-properties */
+    private CurrentInfo currentInfo;
     private Insets parentPadding;
     private int parentHeight;
     private int parentWidth;
@@ -23,14 +38,10 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
     private int calorieBoxHeight;
     private int macroBoxWidth;
     private int macroBoxHeight;
-    private Text currentCalories;
-    private Text currentProt;
-    private Text currentCarbs;
-    private Text currentFat;
     private final int BOXES_PADDING = 10;
 
-    public SoftRectangleNutritionContainer(UserConfig userConfig, Insets parentPadding, int parentHeight, int parentWidth, int vgap, int hgap) {
-        this.userConfig = userConfig;
+    public SoftRectangleNutritionContainer(CurrentInfo currentInfo, Insets parentPadding, int parentHeight, int parentWidth, int vgap, int hgap) {
+        this.currentInfo = currentInfo;
         this.parentHeight = parentHeight;
         this.parentWidth = parentWidth;
         this.parentPadding = parentPadding;
@@ -38,10 +49,7 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         this.parentHGap = hgap;
 
         this.containerAreaWidth = parentWidth - (int)parentPadding.getLeft() - (int)parentPadding.getRight();
-        this.currentCalories = new Text("0");
-        this.currentProt = new Text("0");
-        this.currentCarbs = new Text("0");
-        this.currentFat = new Text("0");
+
     }
 
     @Override
@@ -56,11 +64,24 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         calorieLabel.setTextAlignment(TextAlignment.CENTER);
         calorieLabel.getStyleClass().add("nutritionLabelText");
 
-        TextFlow calorieValues = new TextFlow(currentCalories, new Text(" / " + userConfig.getBMR() + " kcal"));
+        Text currentCaloriesText = new Text();
+        currentCaloriesText.textProperty().bind(Bindings.convert(currentInfo.getObservableStatistic().getKcalProperty()));
+        Text calorieRequirementsText = new Text();
+        calorieRequirementsText.textProperty().bind(
+                Bindings.concat(
+                    " / ",
+                    Bindings.convert(currentInfo.getObservableConfig().getBMRProperty()),
+                    " kcal "
+                )
+        );
+        TextFlow calorieValues = new TextFlow(currentCaloriesText, calorieRequirementsText);
         calorieValues.setTextAlignment(TextAlignment.CENTER);
         calorieValues.getStyleClass().add("nutritionValuesText");
 
-        StackPane progressIndicator = new PercentProgressIndicator(0.0, userConfig.getBMR());
+        StackPane progressIndicator = new PercentProgressIndicator(
+                currentInfo.getObservableStatistic().getKcalProperty(),
+                currentInfo.getObservableConfig().getBMRProperty()
+        );
 
         calorieContainer.getChildren().addAll(calorieLabel, calorieValues, progressIndicator);
         calorieContainer.setMinHeight(calorieBoxHeight);
@@ -82,11 +103,24 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         proteinLabel.setTextAlignment(TextAlignment.CENTER);
         proteinLabel.getStyleClass().add("nutritionLabelText");
 
-        TextFlow proteinValues = new TextFlow(currentProt, new Text(" / " + userConfig.getProtein() + " grams"));
+        Text currentProtText = new Text();
+        currentProtText.textProperty().bind(Bindings.convert(currentInfo.getObservableStatistic().getProtProperty()));
+        Text protRequirementsText = new Text();
+        protRequirementsText.textProperty().bind(
+                Bindings.concat(
+                        " / ",
+                        Bindings.convert(currentInfo.getObservableConfig().getProtProperty()),
+                        " gram"
+                )
+        );
+        TextFlow proteinValues = new TextFlow(currentProtText, protRequirementsText);
         proteinValues.setTextAlignment(TextAlignment.CENTER);
         proteinValues.getStyleClass().add("nutritionValuesText");
 
-        PercentProgressIndicator proteinIndicator = new PercentProgressIndicator(0.0, userConfig.getProtein());
+        PercentProgressIndicator proteinIndicator = new PercentProgressIndicator(
+                currentInfo.getObservableStatistic().getProtProperty(),
+                currentInfo.getObservableConfig().getProtProperty()
+        );
 
         VBox proteinBox = getSubStyledVbox();
         proteinBox.setMinHeight(macroBoxHeight);
@@ -99,11 +133,24 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         carbsLabel.setTextAlignment(TextAlignment.CENTER);
         carbsLabel.getStyleClass().add("nutritionLabelText");
 
-        TextFlow carbValues = new TextFlow(currentCarbs, new Text(" / " + userConfig.getCarbs() + " grams"));
+        Text currentCarbsText = new Text();
+        currentCarbsText.textProperty().bind(Bindings.convert(currentInfo.getObservableStatistic().getCarbsProperty()));
+        Text carbRequirementText = new Text();
+        carbRequirementText.textProperty().bind(
+                Bindings.concat(
+                        " / ",
+                        Bindings.convert(currentInfo.getObservableConfig().getCarbProperty()),
+                        " gram"
+                )
+        );
+        TextFlow carbValues = new TextFlow(currentCarbsText, carbRequirementText);
         carbValues.setTextAlignment(TextAlignment.CENTER);
         carbValues.getStyleClass().add("nutritionValuesText");
 
-        PercentProgressIndicator carbsIndicator = new PercentProgressIndicator(0.0, userConfig.getCarbs());
+        PercentProgressIndicator carbsIndicator = new PercentProgressIndicator(
+                currentInfo.getObservableStatistic().getCarbsProperty(),
+                currentInfo.getObservableConfig().getCarbProperty()
+        );
 
         VBox carbBox = getSubStyledVbox();
         carbBox.setMinHeight(macroBoxHeight);
@@ -116,11 +163,24 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         fatLabel.setTextAlignment(TextAlignment.CENTER);
         fatLabel.getStyleClass().add("nutritionLabelText");
 
-        TextFlow fatValues = new TextFlow(currentFat, new Text(" / " + userConfig.getFat() + " grams"));
+        Text currentFatText = new Text();
+        currentFatText.textProperty().bind(Bindings.convert(currentInfo.getObservableStatistic().getFatProperty()));
+        Text fatRequirementText = new Text();
+        fatRequirementText.textProperty().bind(
+                Bindings.concat(
+                        " / ",
+                        Bindings.convert(currentInfo.getObservableConfig().getFatProperty()),
+                        " gram"
+                )
+        );
+        TextFlow fatValues = new TextFlow(currentFatText, fatRequirementText);
         fatValues.setTextAlignment(TextAlignment.CENTER);
         fatValues.getStyleClass().add("nutritionValuesText");
 
-        PercentProgressIndicator fatIndicator = new PercentProgressIndicator(0.0, userConfig.getFat());
+        PercentProgressIndicator fatIndicator = new PercentProgressIndicator(
+                currentInfo.getObservableStatistic().getFatProperty(),
+                currentInfo.getObservableConfig().getFatProperty()
+        );
 
         VBox fatBox = getSubStyledVbox();
         fatBox.setMinHeight(macroBoxHeight);
@@ -135,6 +195,7 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
 
     @Override
     public HBox getMicroInfo() {
+        // TODO: Bindings and stuff
         HBox microContainer = getBasicStyledHBox();
         int containerWidth = macroBoxWidth + calorieBoxWidth + parentHGap + 15; // TODO: FIX
         int containerHeight = 3 * calorieBoxHeight / 2;
