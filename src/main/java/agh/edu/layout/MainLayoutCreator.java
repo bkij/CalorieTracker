@@ -112,10 +112,29 @@ public class MainLayoutCreator {
 
     }
 
+    private void createAddMealWindow() {
+        int padding = 50;
+        FlowPane innerWindow = new FlowPane();
+        innerWindow.getStyleClass().add("addMealInnerWindow");
+        innerWindow.setMinWidth(4 * windowWidth / 5 - 2 * padding);
+        innerWindow.setMinHeight(windowHeight - 2 * padding - 50);
+
+        Button okButton = ActionUtils.createButton(ActionMap.action("addMealOK"));
+        okButton.getStyleClass().add("okButton");
+        Button cancelButton = ActionUtils.createButton(ActionMap.action("addMealCancel"));
+        cancelButton.getStyleClass().add("cancelButton");
+
+        addMealWindow.getChildren().addAll(innerWindow, okButton, cancelButton);
+        addMealWindow.setPadding(new Insets(padding));
+        addMealWindow.setAlignment(Pos.TOP_CENTER);
+        addMealWindow.setHgap(10);
+        addMealWindow.setVgap(10);
+    }
 
     public BorderPane createMainLayout() {
         createChangeDayWindow();
         createStatsWindow();
+        createAddMealWindow();
         createMenuBox();
         createMainWindow();
         mainLayout.setLeft(menu);

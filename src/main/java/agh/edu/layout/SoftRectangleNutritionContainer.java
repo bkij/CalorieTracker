@@ -153,7 +153,7 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         fatLabel.getStyleClass().add("nutritionLabelText");
 
         Text currentFatText = new Text();
-        currentFatText.textProperty().bind(Bindings.convert(fatRequirement));
+        currentFatText.textProperty().bind(Bindings.convert(currentFat));
         Text fatRequirementText = new Text();
         fatRequirementText.textProperty().bind(Bindings.concat(" / ", fatRequirement, " gram"));
 

@@ -163,3 +163,12 @@
     -fx-font-weight: bold;
     -fx-font-style: italic;
 }
+.addMealInnerWindow
+{
+    -fx-background-color: #f4f4f9;
+    -fx-background-radius: 5.0;
+    -fx-border-style: solid inside;
+    -fx-border-color: #284c6c;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5.0;
+}

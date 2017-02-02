@@ -44,6 +44,7 @@ public class ButtonsController {
     /* Main buttons */
     @ActionProxy(text="")
     public void addButton(ActionEvent event) {
+        mainLayout.setCenter(addMealWindow);
     }
     @ActionProxy(text="")
     public void changeDayButton(ActionEvent event) {
@@ -58,7 +59,15 @@ public class ButtonsController {
         new Alert(Alert.AlertType.INFORMATION, "Coming soon").showAndWait();
     }
     /* Add meal buttons */
-
+    @ActionProxy(text="")
+    public void addMealOK(ActionEvent event) {
+        // Do stuff
+        mainLayout.setCenter(mainWindow);
+    }
+    @ActionProxy(text="")
+    public void addMealCancel(ActionEvent event) {
+        mainLayout.setCenter(mainWindow);
+    }
     /* Change day buttons */
     @ActionProxy(text="")
     public void changeDayOK(ActionEvent event) {
