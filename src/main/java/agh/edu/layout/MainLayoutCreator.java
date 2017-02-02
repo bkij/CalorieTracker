@@ -1,10 +1,13 @@
 package agh.edu.layout;
 
+import agh.edu.layout.customComponents.FoodInfoTableView;
 import agh.edu.model.observable.CurrentInfo;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -114,10 +117,47 @@ public class MainLayoutCreator {
 
     private void createAddMealWindow() {
         int padding = 50;
+        int mealWindowWidth = 4 * windowWidth / 5 - 2 * padding;
+        int mealWindowHeight = windowHeight - 2 * padding - 50;
         FlowPane innerWindow = new FlowPane();
         innerWindow.getStyleClass().add("addMealInnerWindow");
-        innerWindow.setMinWidth(4 * windowWidth / 5 - 2 * padding);
-        innerWindow.setMinHeight(windowHeight - 2 * padding - 50);
+        innerWindow.setMinWidth(mealWindowWidth);
+        innerWindow.setMinHeight(mealWindowHeight);
+        innerWindow.setAlignment(Pos.TOP_CENTER);
+        innerWindow.setPadding(new Insets(30, 20, 20, 20));
+        innerWindow.setHgap(5);
+        innerWindow.setVgap(10);
+
+        TextField searchText = new TextField();
+        searchText.setPromptText("Enter food name to search...");
+        searchText.setPrefColumnCount(15);
+        Button searchButton = ActionUtils.createButton(ActionMap.action("searchButton"));
+        FoodInfoTableView foodInfoTable = new FoodInfoTableView();
+        foodInfoTable.setMinWidth(mealWindowWidth - 40);
+        foodInfoTable.setMaxWidth(mealWindowWidth - 40);
+        foodInfoTable.setMinHeight(mealWindowHeight / 2);
+        foodInfoTable.setMaxHeight(mealWindowHeight / 2);
+
+        Button addFoodButton = ActionUtils.createButton(ActionMap.action("addFoodButton"));
+
+        Text totalValuesText = new Text();
+        totalValuesText.textProperty().bind(
+                Bindings.concat(
+                    "Total values chosen: ",
+                        Bindings.convert(foodInfoTable.totalKcalChosenProperty()),
+                        " kcal, ",
+                        Bindings.convert(foodInfoTable.totalProtChosenProperty()),
+                        " protein, ",
+                        Bindings.convert(foodInfoTable.totalCarbsChosenProperty()),
+                        " carbs, ",
+                        Bindings.convert(foodInfoTable.totalFatChosenProperty()),
+                        " fat"
+                )
+        );
+        TextFlow totalValuesTextWrapper = new TextFlow(totalValuesText);
+
+        innerWindow.getChildren().addAll(searchText, searchButton, foodInfoTable, addFoodButton, totalValuesTextWrapper);
+        innerWindow.setMargin(addFoodButton, new Insets(0, mealWindowWidth / 3, 20, mealWindowWidth / 3));
 
         Button okButton = ActionUtils.createButton(ActionMap.action("addMealOK"));
         okButton.getStyleClass().add("okButton");

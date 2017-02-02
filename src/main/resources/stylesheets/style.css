@@ -106,7 +106,7 @@
 .softRectVBox
 {
     -fx-font-size: 15pt;
-    -fx-background-color: rgba(219, 237, 255, 0.75); /* semi transparent #dbedff */
+    -fx-background-color: rgba(244, 244, 249, 0.8); /* semi transparent #f4f4f9 */
     -fx-background-radius: 5.0;
     -fx-border-style: solid inside;
     -fx-border-color: #284c6c;
