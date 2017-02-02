@@ -62,4 +62,40 @@ public class FoodInfoTableView extends TableView {
     public DoubleProperty totalFatChosenProperty() {
         return totalFatChosen;
     }
+
+    public double getTotalKcalChosen() {
+        return totalKcalChosen.get();
+    }
+
+    public double getTotalProtChosen() {
+        return totalProtChosen.get();
+    }
+
+    public double getTotalCarbsChosen() {
+        return totalCarbsChosen.get();
+    }
+
+    public double getTotalFatChosen() {
+        return totalFatChosen.get();
+    }
+
+    public void addKcalToTotal(double kcal) {
+        totalKcalChosen.setValue(totalKcalChosen.getValue() + kcal);
+    }
+    public void addCarbsToTotal(double carbs) {
+        totalCarbsChosen.setValue(totalCarbsChosen.getValue() + carbs);
+    }
+    public void addProtToTotal(double prot) {
+        totalProtChosen.setValue(totalProtChosen.getValue() + prot);
+    }
+    public void addFatToTotal(double fat) {
+    totalFatChosen.setValue(totalFatChosen.getValue() + fat);
+    }
+
+    public void clearChosen() {
+        totalKcalChosen.set(0);
+        totalCarbsChosen.set(0);
+        totalProtChosen.set(0);
+        totalFatChosen.set(0);
+    }
 }

@@ -27,6 +27,12 @@ public class ObservableStatistic {
         return new ObservableStatistic(stat.getDate(), stat.getTotalKcal(), stat.getTotalProt(), stat.getTotalCarbs(), stat.getTotalFat());
     }
 
+    public Statistic toStatistic() {
+        return new Statistic(dateProperty.get(), kcalProperty.get(), protProperty.get(), carbsProperty.get(), fatProperty.get());
+    }
+
+    public LocalDate getDate() { return dateProperty.get();}
+
     public ObjectProperty<LocalDate> getDateProperty() { return dateProperty; }
 
     public DoubleProperty getKcalProperty() {
@@ -43,5 +49,18 @@ public class ObservableStatistic {
 
     public DoubleProperty getFatProperty() {
         return fatProperty;
+    }
+
+    public void addKcal(double kcal) {
+        kcalProperty.setValue(kcalProperty.getValue() + kcal);
+    }
+    public void addProt(double prot) {
+        protProperty.setValue(protProperty.getValue() + prot);
+    }
+    public void addCarbs(double carbs) {
+        carbsProperty.setValue(carbsProperty.getValue() + carbs);
+    }
+    public void addFat(double fat) {
+        fatProperty.setValue(fatProperty.getValue() + fat);
     }
 }

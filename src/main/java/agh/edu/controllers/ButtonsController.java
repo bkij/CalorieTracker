@@ -3,14 +3,13 @@ package agh.edu.controllers;
 import agh.edu.layout.customComponents.FoodInfoTableView;
 import agh.edu.model.Statistic;
 import agh.edu.model.observable.CurrentInfo;
+import agh.edu.model.observable.ObservableStatistic;
 import agh.edu.model.viewable.ViewableFoodInfo;
 import agh.edu.storage.StorageAggregator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import org.controlsfx.control.action.ActionMap;
@@ -78,15 +77,56 @@ public class ButtonsController {
     }
     @ActionProxy(text = "Add")
     public void addFoodButton(ActionEvent event) {
+        FoodInfoTableView tableView = getFoodInfoView();
+        ViewableFoodInfo selectedFoodInfo = (ViewableFoodInfo)tableView.getSelectionModel().getSelectedItem();
 
+        if(selectedFoodInfo != null) {
+            TextInputDialog gramatureDialog = new TextInputDialog("100");
+            gramatureDialog.setContentText("Enter the weight of chosen food in grams: ");
+            // Validation
+            gramatureDialog.getDialogPane().lookupButton(ButtonType.OK).addEventFilter(ActionEvent.ACTION, buttonEvent -> {
+                if(!gramatureDialog.getEditor().getText().matches("[0-9]{1,4}")) {
+                    buttonEvent.consume();
+                    new Alert(Alert.AlertType.ERROR, "Please enter a number (max 9999)").showAndWait();
+                }
+            });
+
+            Optional<String> grams = gramatureDialog.showAndWait();
+            if(!grams.isPresent()) {
+                // User clicked cancel
+                return;
+            }
+
+            double multiplier = Double.parseDouble(grams.get()) / 100;
+
+            System.out.println(multiplier);
+
+            tableView.addKcalToTotal(selectedFoodInfo.getKcal() * multiplier);
+            tableView.addCarbsToTotal(selectedFoodInfo.getCarbs() * multiplier);
+            tableView.addProtToTotal(selectedFoodInfo.getProt() * multiplier);
+            tableView.addFatToTotal(selectedFoodInfo.getFat() * multiplier);
+        }
     }
     @ActionProxy(text="")
     public void addMealOK(ActionEvent event) {
-        // Do stuff
+        FoodInfoTableView tableView = getFoodInfoView();
+
+        ObservableStatistic currentStats = currentInfo.getObservableStatistic();
+        currentStats.addCarbs(tableView.getTotalCarbsChosen());
+        currentStats.addKcal(tableView.getTotalKcalChosen());
+        currentStats.addProt(tableView.getTotalProtChosen());
+        currentStats.addFat(tableView.getTotalFatChosen());
+
+
+        storages.getStatisticsStorage().save(currentStats.toStatistic());
+
+        tableView.clearChosen();
         mainLayout.setCenter(mainWindow);
     }
     @ActionProxy(text="")
     public void addMealCancel(ActionEvent event) {
+        FoodInfoTableView tableView = getFoodInfoView();
+        tableView.clearChosen();
         mainLayout.setCenter(mainWindow);
     }
 

@@ -48,6 +48,9 @@ public class StatisticFileStorage implements StatisticsStorage {
 
     @Override
     public void save(Statistic stat) {
+        if(stats.contains(stat)) {
+            stats.remove(stat); // Update
+        }
         stats.add(stat);
     }
 

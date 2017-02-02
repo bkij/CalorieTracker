@@ -15,11 +15,15 @@ public class Statistic implements Serializable, Comparable<Statistic> {
     }
 
     public Statistic(LocalDate date) {
+        this(date, 0, 0, 0, 0);
+    }
+
+    public Statistic(LocalDate date, double totalKcal, double totalProt, double totalCarbs, double totalFat) {
         this.date = date;
-        totalKcal = 0.0;
-        totalProt = 0.0;
-        totalCarbs = 0.0;
-        totalFat = 0.0;
+        this.totalKcal = totalKcal;
+        this.totalProt = totalProt;
+        this.totalCarbs = totalCarbs;
+        this.totalFat = totalFat;
     }
 
     @Override

@@ -21,7 +21,7 @@ public class PercentProgressIndicator extends StackPane {
         progressBar.setMaxWidth(Double.MAX_VALUE);  // Let progress bar be filled
         progressBar.progressProperty().bind(Bindings.divide(requirementsSatisfied, totalRequirements));
         percentDone.textProperty().bind(
-                Bindings.concat(Bindings.convert(Bindings.divide(requirementsSatisfied, totalRequirements)), "%")
+                Bindings.format("%.1f %%", Bindings.divide(requirementsSatisfied, totalRequirements).multiply(100))
         );
         this.getChildren().addAll(progressBar, percentDone);
     }

@@ -78,9 +78,9 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         calorieLabel.getStyleClass().add("nutritionLabelText");
 
         Text currentCaloriesText = new Text();
-        currentCaloriesText.textProperty().bind(Bindings.convert(currentCalories));
+        currentCaloriesText.textProperty().bind(Bindings.format("%.1f", currentCalories));
         Text calorieRequirementsText = new Text();
-        calorieRequirementsText.textProperty().bind(Bindings.concat(" / ", Bindings.convert(BMR), " kcal "));
+        calorieRequirementsText.textProperty().bind(Bindings.format(" / %.1f kcal", BMR));
 
         TextFlow calorieValues = new TextFlow(currentCaloriesText, calorieRequirementsText);
         calorieValues.setTextAlignment(TextAlignment.CENTER);
@@ -109,9 +109,9 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         proteinLabel.getStyleClass().add("nutritionLabelText");
 
         Text currentProtText = new Text();
-        currentProtText.textProperty().bind(Bindings.convert(currentProt));
+        currentProtText.textProperty().bind(Bindings.format("%.1f", currentProt));
         Text protRequirementsText = new Text();
-        protRequirementsText.textProperty().bind(Bindings.concat(" / ", Bindings.convert(protRequirement), " gram"));
+        protRequirementsText.textProperty().bind(Bindings.format(" / %.1f gram", protRequirement));
 
         TextFlow proteinValues = new TextFlow(currentProtText, protRequirementsText);
         proteinValues.setTextAlignment(TextAlignment.CENTER);
@@ -126,14 +126,15 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         // CARBS PART
         TextFlow carbsLabel = new TextFlow(new Text("Carbs:"));
         carbsLabel.setMinWidth(macroRegionWidth);
+        carbsLabel.setMaxWidth(macroRegionWidth);
         carbsLabel.setMinHeight(macroBoxHeight / 3);
         carbsLabel.setTextAlignment(TextAlignment.CENTER);
         carbsLabel.getStyleClass().add("nutritionLabelText");
 
         Text currentCarbsText = new Text();
-        currentCarbsText.textProperty().bind(Bindings.convert(currentCarb));
+        currentCarbsText.textProperty().bind(Bindings.format("%.1f",currentCarb));
         Text carbRequirementText = new Text();
-        carbRequirementText.textProperty().bind(Bindings.concat(" / ", Bindings.convert(carbRequirement), " gram"));
+        carbRequirementText.textProperty().bind(Bindings.format(" / %.1f gram", carbRequirement));
 
         TextFlow carbValues = new TextFlow(currentCarbsText, carbRequirementText);
         carbValues.setTextAlignment(TextAlignment.CENTER);
@@ -153,9 +154,9 @@ public class SoftRectangleNutritionContainer implements NutritionInfoContainerCr
         fatLabel.getStyleClass().add("nutritionLabelText");
 
         Text currentFatText = new Text();
-        currentFatText.textProperty().bind(Bindings.convert(currentFat));
+        currentFatText.textProperty().bind(Bindings.format("%.1f", currentFat));
         Text fatRequirementText = new Text();
-        fatRequirementText.textProperty().bind(Bindings.concat(" / ", fatRequirement, " gram"));
+        fatRequirementText.textProperty().bind(Bindings.format(" / %.1f gram", fatRequirement));
 
         TextFlow fatValues = new TextFlow(currentFatText, fatRequirementText);
         fatValues.setTextAlignment(TextAlignment.CENTER);

@@ -142,17 +142,12 @@ public class MainLayoutCreator {
 
         Text totalValuesText = new Text();
         totalValuesText.textProperty().bind(
-                Bindings.concat(
-                    "Total values chosen: ",
-                        Bindings.convert(foodInfoTable.totalKcalChosenProperty()),
-                        " kcal, ",
-                        Bindings.convert(foodInfoTable.totalProtChosenProperty()),
-                        " protein, ",
-                        Bindings.convert(foodInfoTable.totalCarbsChosenProperty()),
-                        " carbs, ",
-                        Bindings.convert(foodInfoTable.totalFatChosenProperty()),
-                        " fat"
-                )
+                Bindings.format(
+                        "Total values chosen: %.1f kcal, %.1f g protein, %.1f g carbs, %.1f g fat",
+                        foodInfoTable.totalKcalChosenProperty(),
+                        foodInfoTable.totalProtChosenProperty(),
+                        foodInfoTable.totalCarbsChosenProperty(),
+                        foodInfoTable.totalFatChosenProperty())
         );
         TextFlow totalValuesTextWrapper = new TextFlow(totalValuesText);
 
