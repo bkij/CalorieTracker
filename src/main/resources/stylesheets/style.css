@@ -12,6 +12,10 @@
     -fx-background-color: #dbedff;
     -fx-background-image: url("../images/add2.png");
 }
+.addButton:pressed
+{
+    -fx-background-image: url("../images/add2pressed.png");
+}
 .changeDayButton
 {
     -fx-background-radius: 150em;
@@ -23,6 +27,10 @@
     -fx-background-repeat: no-repeat;
     -fx-background-color: #dbedff;
     -fx-background-image: url("../images/calendar.png");
+}
+.changeDayButton:pressed
+{
+    -fx-background-image: url("../images/calendarPressed.png");
 }
 .optionsButton
 {
@@ -36,6 +44,10 @@
     -fx-background-color: #dbedff;
     -fx-background-image: url("../images/options.png");
 }
+.optionsButton:pressed
+{
+    -fx-background-image: url("../images/optionsPressed.png");
+}
 .statsButton
 {
     -fx-background-radius: 150em;
@@ -47,6 +59,10 @@
     -fx-background-repeat: no-repeat;
     -fx-background-color: #dbedff;
     -fx-background-image: url("../images/stats.png");
+}
+.statsButton:pressed
+{
+    -fx-background-image: url("../images/statsPressed.png");
 }
 .VBox
 {
@@ -121,7 +137,10 @@
     -fx-background-repeat: no-repeat;
     -fx-background-image: url("../images/ok.png");
 }
-
+.okButton:pressed
+{
+    -fx-background-image: url("../images/okPressed.png");
+}
 .cancelButton
 {
     -fx-background-radius: 150em;
@@ -134,7 +153,10 @@
     -fx-background-repeat: no-repeat;
     -fx-background-image: url("../images/cancel.png");
 }
-
+.cancelButton:pressed
+{
+    -fx-background-image: url("../images/cancelPressed.png");
+}
 .genericBoldText
 {
     -fx-font-size: 20pt;
