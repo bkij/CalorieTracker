@@ -56,11 +56,12 @@ public class ButtonsController {
     /* Change day buttons */
     @ActionProxy(text="")
     public void changeDayOK(ActionEvent event) {
-
+        // TODO: date stuff
+        mainLayout.setCenter(mainWindow);
     }
     @ActionProxy(text="")
     public void changeDayCancel(ActionEvent event) {
-
+        mainLayout.setCenter(mainWindow);
     }
 
 }

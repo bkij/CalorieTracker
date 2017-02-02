@@ -78,7 +78,7 @@
 .mainLayout
 {
     -fx-background-color: #f4f4f9;
-    -fx-background-position: 0px 0px;
+    -fx-background-position: 44px 0px;
     -fx-background-image: url("../images/bgPhoto2lightened2.jpeg");
     -fx-background-size: 1152px 768px;
     -fx-background-repeat: no-repeat;
@@ -107,4 +107,37 @@
 .nutritionLabelText
 {
     -fx-font-weight: bold;
+}
+
+.okButton
+{
+    -fx-background-radius: 150em;
+    -fx-min-width: 25px;
+    -fx-min-height: 25px;
+    -fx-max-width: 25px;
+    -fx-max-height: 25px;
+    -fx-background-position: center;
+    -fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/ok.png");
+}
+
+.cancelButton
+{
+    -fx-background-radius: 150em;
+    -fx-min-width: 25px;
+    -fx-min-height: 25px;
+    -fx-max-width: 25px;
+    -fx-max-height: 25px;
+    -fx-background-position: center;
+    -fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/cancel.png");
+}
+
+.genericBoldText
+{
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
 }

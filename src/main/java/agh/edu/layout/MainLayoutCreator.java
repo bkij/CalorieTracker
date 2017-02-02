@@ -4,11 +4,17 @@ import agh.edu.model.observable.CurrentInfo;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
+import org.controlsfx.control.action.ActionMap;
+import org.controlsfx.control.action.ActionUtils;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +88,24 @@ public class MainLayoutCreator {
     }
 
     private void createChangeDayWindow() {
+        Text dateText = new Text("Enter date: ");
+        dateText.getStyleClass().add("genericBoldText");
+        TextFlow textBox = new TextFlow(dateText);
+        textBox.setMinWidth(4 * windowWidth / 5);
+        textBox.setTextAlignment(TextAlignment.CENTER);
+        DatePicker datePicker = new DatePicker(LocalDate.now());
+        datePicker.setMinWidth(windowWidth / 5);
+        Button okButton = ActionUtils.createButton(ActionMap.action("changeDayOK"));
+        okButton.getStyleClass().add("okButton");
+        Button cancelButton = ActionUtils.createButton(ActionMap.action("changeDayCancel"));
+        cancelButton.getStyleClass().add("cancelButton");
 
+        changeDayWindow.getChildren().addAll(textBox, datePicker, okButton, cancelButton);
+        changeDayWindow.setMargin(datePicker, new Insets(0, 2 * windowWidth / 5 - 50, 0, 2 * windowWidth / 5 - 50));
+        changeDayWindow.setAlignment(Pos.TOP_CENTER);
+        changeDayWindow.setPadding(new Insets(50));
+        changeDayWindow.setHgap(10);
+        changeDayWindow.setVgap(20);
     }
 
     private void createStatsWindow() {
@@ -91,6 +114,8 @@ public class MainLayoutCreator {
 
 
     public BorderPane createMainLayout() {
+        createChangeDayWindow();
+        createStatsWindow();
         createMenuBox();
         createMainWindow();
         mainLayout.setLeft(menu);
