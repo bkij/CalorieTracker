@@ -135,8 +135,8 @@ public class MainLayoutCreator {
         FoodInfoTableView foodInfoTable = new FoodInfoTableView();
         foodInfoTable.setMinWidth(mealWindowWidth - 40);
         foodInfoTable.setMaxWidth(mealWindowWidth - 40);
-        foodInfoTable.setMinHeight(mealWindowHeight / 2);
-        foodInfoTable.setMaxHeight(mealWindowHeight / 2);
+        foodInfoTable.setMinHeight(mealWindowHeight / 1.5);
+        foodInfoTable.setMaxHeight(mealWindowHeight / 1.5);
 
         Button addFoodButton = ActionUtils.createButton(ActionMap.action("addFoodButton"));
 

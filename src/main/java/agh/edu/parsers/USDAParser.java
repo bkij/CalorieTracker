@@ -58,7 +58,8 @@ public class USDAParser implements NutritionalDataParser {
         if(nutInfo.length != NUM_NUTRITION_FIELDS && nutInfo.length != NUM_NUTRITION_FIELDS - 1) {
             throw new ParsingException("File format problem");
         }
-        setNutritionalInfo(currentFoodInfo, nutInfo, parts[1]);
+        String foodName = parts[1].substring(1, parts[1].length() - 2); // Tildes wrap strings in the file
+        setNutritionalInfo(currentFoodInfo, nutInfo, foodName);
 
         return currentFoodInfo;
     }
