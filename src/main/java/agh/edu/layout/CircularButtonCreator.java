@@ -1,6 +1,5 @@
 package agh.edu.layout;
 
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -42,27 +41,26 @@ public class CircularButtonCreator implements ButtonCreator {
 
     // TODO: Add all the logic
     private Button createDayChangeButton() {
-        Button changeDay = ActionUtils.createButton(ActionMap.action("addButton"));
+        Button changeDay = ActionUtils.createButton(ActionMap.action("changeDayButton"));
         changeDay.getStyleClass().add("changeDayButton");
 
         return changeDay;
     }
     private Button createAddButton() {
-        Button addMeal = new Button();
+        Button addMeal = ActionUtils.createButton(ActionMap.action("addButton"));
         addMeal.getStyleClass().add("addButton");
 
         return addMeal;
     }
     private Button createStatsButton() {
-        Button showStats = new Button();
+        Button showStats = ActionUtils.createButton(ActionMap.action("statsButton"));
         showStats.getStyleClass().add("statsButton");
 
         return showStats;
     }
     private Button createOptionsButton() {
-        Button showOptions = new Button();
+        Button showOptions = ActionUtils.createButton(ActionMap.action("optionsButton"));
         showOptions.getStyleClass().add("optionsButton");
-        showOptions.setOnMousePressed(event -> new Alert(Alert.AlertType.INFORMATION, "Coming soon").showAndWait());
         return showOptions;
     }
 }

@@ -81,6 +81,15 @@ public class MainLayoutCreator {
         mainWindow.getStyleClass().add("mainWindow");
     }
 
+    private void createChangeDayWindow() {
+
+    }
+
+    private void createStatsWindow() {
+
+    }
+
+
     public BorderPane createMainLayout() {
         createMenuBox();
         createMainWindow();
